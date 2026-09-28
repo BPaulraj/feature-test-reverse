@@ -1,0 +1,12 @@
+__pycache__/
+
+# secrets and personal settings
+ado.properties
+.github/*.local.yml
+
+# generated output for a real project (test cases, ADO IDs, review decisions, approval log)
+ado-test-cases/
+
+# sample runs
+samples/stock-broker/actual/
+samples/stock-broker/ado-id-map.csv

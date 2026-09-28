@@ -1,0 +1,10 @@
+# ADO Platform Details - copy to ado.properties (which is gitignored) and fill in.
+# Used by: python .github/scripts/ado_testcases.py push
+# The PAT needs these scopes: Work Items (Read & Write), Test Management (Read & Write),
+# and Project and Team (Read & Write) only if you use --create-areas.
+# The environment variable ADO_PAT overrides ado.pat (use that in CI instead of a file).
+ado.org.url=https://dev.azure.com/<organization>
+ado.project=<project name>
+ado.pat=<personal access token>
+ado.api.version=7.1
+ado.testplan.id=<test plan id>

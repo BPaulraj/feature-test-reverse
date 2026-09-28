@@ -1,0 +1,57 @@
+ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area Path,Assigned To,State,Tags,Description
+,Test Case,Successful login with valid credentials,1,Open the StockBroker login page,,StockBroker\Regression\auth\login,qa.lead@broker.example,Design,auth; login,"Source: samples/stock-broker/features/auth/login.feature:10
+Feature: Trader login
+Scenario: Successful login with valid credentials (Scenario)
+Gherkin tags: @auth @P1 @smoke
+Context: Traders sign in to the StockBroker web platform with their client ID and password. Accounts are locked after 3 failed attempts.
+Test type: UI (default (no API evidence))"
+,Test Case,Successful login with valid credentials,2,"Log in with client ID ""TRD1001"" and password ""Secure#2024""","The trading dashboard is displayed
+The header shows ""Welcome, TRD1001""",StockBroker\Regression\auth\login,qa.lead@broker.example,Design,auth; login,"Source: samples/stock-broker/features/auth/login.feature:10
+Feature: Trader login
+Scenario: Successful login with valid credentials (Scenario)
+Gherkin tags: @auth @P1 @smoke
+Context: Traders sign in to the StockBroker web platform with their client ID and password. Accounts are locked after 3 failed attempts.
+Test type: UI (default (no API evidence))"
+,Test Case,Login is rejected for [reason],1,Open the StockBroker login page,,StockBroker\Regression\auth\login,qa.lead@broker.example,Design,auth; login,"Source: samples/stock-broker/features/auth/login.feature:15
+Feature: Trader login
+Scenario: Login is rejected for <reason> (Scenario Outline - parameterized)
+Gherkin tags: @auth @P1 @negative @security
+Context: Traders sign in to the StockBroker web platform with their client ID and password. Accounts are locked after 3 failed attempts.
+Test type: UI (default (no API evidence))
+Parameters: @clientId, @password, @error
+Iterations: 3 | values file: auth/login.parameters/01-login-is-rejected-for-reason.csv
+Examples blocks: rows 1-2 ""invalid credentials"" @negative; row 3 ""locked account"" @negative @security
+Not parameters (title-only/unused columns): reason=wrong password, unknown client, locked account
+Values:
+clientId | password | error
+TRD1001 | wrong | Invalid client ID or password
+TRD9999 | Secure#2024 | Invalid client ID or password
+TRD2002 | Secure#2024 | Account locked. Contact support@broker.example"
+,Test Case,Login is rejected for [reason],2,"Log in with client ID ""@clientId"" and password ""@password""","The error message ""@error"" is displayed
+The trader remains on the login page",StockBroker\Regression\auth\login,qa.lead@broker.example,Design,auth; login,"Source: samples/stock-broker/features/auth/login.feature:15
+Feature: Trader login
+Scenario: Login is rejected for <reason> (Scenario Outline - parameterized)
+Gherkin tags: @auth @P1 @negative @security
+Context: Traders sign in to the StockBroker web platform with their client ID and password. Accounts are locked after 3 failed attempts.
+Test type: UI (default (no API evidence))
+Parameters: @clientId, @password, @error
+Iterations: 3 | values file: auth/login.parameters/01-login-is-rejected-for-reason.csv
+Examples blocks: rows 1-2 ""invalid credentials"" @negative; row 3 ""locked account"" @negative @security
+Not parameters (title-only/unused columns): reason=wrong password, unknown client, locked account
+Values:
+clientId | password | error
+TRD1001 | wrong | Invalid client ID or password
+TRD9999 | Secure#2024 | Invalid client ID or password
+TRD2002 | Secure#2024 | Account locked. Contact support@broker.example"
+,Test Case,Forgot password sends a reset link,1,Open the StockBroker login page,,StockBroker\Regression\auth\login,qa.lead@broker.example,Design,auth; login,"Source: samples/stock-broker/features/auth/login.feature:31
+Feature: Trader login
+Scenario: Forgot password sends a reset link (Scenario)
+Gherkin tags: @auth @P1
+Context: Traders sign in to the StockBroker web platform with their client ID and password. Accounts are locked after 3 failed attempts.
+Test type: UI (default (no API evidence))"
+,Test Case,Forgot password sends a reset link,2,"Request a password reset for ""trader.one@broker.example""","A reset link is sent to ""trader.one@broker.example""",StockBroker\Regression\auth\login,qa.lead@broker.example,Design,auth; login,"Source: samples/stock-broker/features/auth/login.feature:31
+Feature: Trader login
+Scenario: Forgot password sends a reset link (Scenario)
+Gherkin tags: @auth @P1
+Context: Traders sign in to the StockBroker web platform with their client ID and password. Accounts are locked after 3 failed attempts.
+Test type: UI (default (no API evidence))"

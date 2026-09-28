@@ -1,0 +1,100 @@
+ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area Path,Assigned To,State,Tags,Description
+,Test Case,Holdings table shows current positions,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:7
+Feature: Portfolio holdings
+Scenario: Holdings table shows current positions (Scenario)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))"
+,Test Case,Holdings table shows current positions,2,"Ensure the trader holds the following positions:
+| Symbol | Quantity | Avg Price |
+| AAPL | 10 | 145.20 |
+| MSFT | 5 | 310.00 |",,StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:7
+Feature: Portfolio holdings
+Scenario: Holdings table shows current positions (Scenario)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))"
+,Test Case,Holdings table shows current positions,3,Open the holdings page,"The holdings table lists 2 positions
+The total market value is shown in ""USD""",StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:7
+Feature: Portfolio holdings
+Scenario: Holdings table shows current positions (Scenario)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))"
+,Test Case,Unrealised P&L for [symbol],1,"Log in as trader ""TRD1001""",,StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:16
+Feature: Portfolio holdings
+Scenario: Unrealised P&L for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @quantity, @avg_price, @ltp, @pnl
+Iterations: 3 | values file: portfolio/holdings.parameters/01-unrealised-p-l-for-symbol.csv
+Examples blocks: row 1 ""gains""; rows 2-3 ""losses and flat""
+Not parameters (title-only/unused columns): account-id=ACC-01, ACC-02
+Values:
+symbol | quantity | avg_price | ltp | pnl
+AAPL | 10 | 145.20 | 150.20 | +50.00
+MSFT | 5 | 310.00 | 300.00 | -50.00
+INFY | 20 | 18.50 | 18.50 | 0.00"
+,Test Case,Unrealised P&L for [symbol],2,"Ensure the trader holds @quantity shares of ""@symbol"" bought at @avg_price",,StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:16
+Feature: Portfolio holdings
+Scenario: Unrealised P&L for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @quantity, @avg_price, @ltp, @pnl
+Iterations: 3 | values file: portfolio/holdings.parameters/01-unrealised-p-l-for-symbol.csv
+Examples blocks: row 1 ""gains""; rows 2-3 ""losses and flat""
+Not parameters (title-only/unused columns): account-id=ACC-01, ACC-02
+Values:
+symbol | quantity | avg_price | ltp | pnl
+AAPL | 10 | 145.20 | 150.20 | +50.00
+MSFT | 5 | 310.00 | 300.00 | -50.00
+INFY | 20 | 18.50 | 18.50 | 0.00"
+,Test Case,Unrealised P&L for [symbol],3,"Ensure the last traded price of ""@symbol"" is @ltp",,StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:16
+Feature: Portfolio holdings
+Scenario: Unrealised P&L for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @quantity, @avg_price, @ltp, @pnl
+Iterations: 3 | values file: portfolio/holdings.parameters/01-unrealised-p-l-for-symbol.csv
+Examples blocks: row 1 ""gains""; rows 2-3 ""losses and flat""
+Not parameters (title-only/unused columns): account-id=ACC-01, ACC-02
+Values:
+symbol | quantity | avg_price | ltp | pnl
+AAPL | 10 | 145.20 | 150.20 | +50.00
+MSFT | 5 | 310.00 | 300.00 | -50.00
+INFY | 20 | 18.50 | 18.50 | 0.00"
+,Test Case,Unrealised P&L for [symbol],4,Open the holdings page,"The unrealised P&L for ""@symbol"" is ""@pnl""",StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:16
+Feature: Portfolio holdings
+Scenario: Unrealised P&L for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @quantity, @avg_price, @ltp, @pnl
+Iterations: 3 | values file: portfolio/holdings.parameters/01-unrealised-p-l-for-symbol.csv
+Examples blocks: row 1 ""gains""; rows 2-3 ""losses and flat""
+Not parameters (title-only/unused columns): account-id=ACC-01, ACC-02
+Values:
+symbol | quantity | avg_price | ltp | pnl
+AAPL | 10 | 145.20 | 150.20 | +50.00
+MSFT | 5 | 310.00 | 300.00 | -50.00
+INFY | 20 | 18.50 | 18.50 | 0.00"
+,Test Case,Export holdings as [format],1,"Log in as trader ""TRD1001""",,StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:31
+Feature: Portfolio holdings
+Scenario: Export holdings as <format> (Scenario Outline - parameterized)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))
+Parameters: @accountId, @format, @file_name
+Iterations: 2 | values file: portfolio/holdings.parameters/02-export-holdings-as-format.csv
+Examples blocks: rows 1-2 (unnamed)
+Values:
+accountId | format | file_name
+ACC-01 | CSV | holdings_ACC-01.csv
+ACC-01 | PDF | "
+,Test Case,Export holdings as [format],2,"Export the holdings for account ""@accountId"" as ""@format""","A ""@format"" file named ""@file_name"" is downloaded",StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:31
+Feature: Portfolio holdings
+Scenario: Export holdings as <format> (Scenario Outline - parameterized)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))
+Parameters: @accountId, @format, @file_name
+Iterations: 2 | values file: portfolio/holdings.parameters/02-export-holdings-as-format.csv
+Examples blocks: rows 1-2 (unnamed)
+Values:
+accountId | format | file_name
+ACC-01 | CSV | holdings_ACC-01.csv
+ACC-01 | PDF | "

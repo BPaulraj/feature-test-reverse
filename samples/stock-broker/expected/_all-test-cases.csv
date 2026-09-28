@@ -1,0 +1,654 @@
+ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area Path,Assigned To,State,Tags,Description
+,Test Case,Token request for partner [partner],1,"Send a POST request to ""/v1/auth/token"" with form data:
+client_id = @clientId
+client_secret = @clientSecret
+grant_type = client_credentials",Response status code is @status,StockBroker\Regression\api\auth_token,qa.lead@broker.example,Design,api; auth_token,"Source: samples/stock-broker/features/api/auth_token.feature:3
+Feature: Partner authentication API
+Scenario: Token request for partner <partner> (Scenario Outline - parameterized)
+Test type: API (folder rule api/**)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test.
+Parameters: @clientId, @clientSecret, @status
+Iterations: 2 | values file: api/auth_token.parameters/01-token-request-for-partner-partner.csv
+Examples blocks: rows 1-2 (unnamed)
+Not parameters (title-only/unused columns): partner=Acme, Unknown
+Values:
+clientId | clientSecret | status
+acme-partner | ***MASKED*** | 200
+nobody | ***MASKED*** | 401"
+,Test Case,Legacy trade confirmation in XML,1,"Set the request header ""x-api-key"" to ""***MASKED***""",,StockBroker\Regression\api\auth_token,qa.lead@broker.example,Design,api; auth_token,"Source: samples/stock-broker/features/api/auth_token.feature:15
+Feature: Partner authentication API
+Scenario: Legacy trade confirmation in XML (Scenario)
+Test type: API (folder rule api/**)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Legacy trade confirmation in XML,2,"Send a POST request to ""/v1/legacy/confirmations"" with this XML body:
+<confirmation><orderId>ORD-5001</orderId><status>FILLED</status></confirmation>",Response status code is 202,StockBroker\Regression\api\auth_token,qa.lead@broker.example,Design,api; auth_token,"Source: samples/stock-broker/features/api/auth_token.feature:15
+Feature: Partner authentication API
+Scenario: Legacy trade confirmation in XML (Scenario)
+Test type: API (folder rule api/**)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Create a market order,1,"Set the API base URL to ""https://api.stockbroker.test""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:11
+Feature: Orders REST API
+Scenario: Create a market order (Scenario)
+Gherkin tags: @api @orders @smoke
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Create a market order,2,"Set the request header ""Authorization"" to ""Bearer ***MASKED***""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:11
+Feature: Orders REST API
+Scenario: Create a market order (Scenario)
+Gherkin tags: @api @orders @smoke
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Create a market order,3,"Set the request header ""Content-Type"" to ""application/json""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:11
+Feature: Orders REST API
+Scenario: Create a market order (Scenario)
+Gherkin tags: @api @orders @smoke
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Create a market order,4,"Send a POST request to ""/v1/orders"" with this body:
+{
+  ""clientId"": ""TRD1001"",
+  ""symbol"": ""AAPL"",
+  ""side"": ""BUY"",
+  ""type"": ""MARKET"",
+  ""quantity"": 10
+}","Response status code is 201
+Response body field ""status"" is ""FILLED""
+Response matches the schema ""schemas/order-response.json""",StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:11
+Feature: Orders REST API
+Scenario: Create a market order (Scenario)
+Gherkin tags: @api @orders @smoke
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Order validation returns [statusCode] for [case],1,"Set the API base URL to ""https://api.stockbroker.test""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:26
+Feature: Orders REST API
+Scenario: Order validation returns <statusCode> for <case> (Scenario Outline - parameterized)
+Gherkin tags: @api @orders
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test.
+Parameters: @symbol, @qty, @statusCode, @errorCode
+Iterations: 3 | values file: api/orders_api.parameters/01-order-validation-returns-statuscode-for-case.csv
+Examples blocks: rows 1-3 (unnamed)
+Not parameters (title-only/unused columns): case=unknown symbol, zero quantity, market closed
+Values:
+symbol | qty | statusCode | errorCode
+ZZZZ | 10 | 400 | UNKNOWN_SYMBOL
+AAPL | 0 | 400 | INVALID_QUANTITY
+AAPL | 10 | 409 | MARKET_CLOSED"
+,Test Case,Order validation returns [statusCode] for [case],2,"Set the request header ""Authorization"" to ""Bearer ***MASKED***""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:26
+Feature: Orders REST API
+Scenario: Order validation returns <statusCode> for <case> (Scenario Outline - parameterized)
+Gherkin tags: @api @orders
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test.
+Parameters: @symbol, @qty, @statusCode, @errorCode
+Iterations: 3 | values file: api/orders_api.parameters/01-order-validation-returns-statuscode-for-case.csv
+Examples blocks: rows 1-3 (unnamed)
+Not parameters (title-only/unused columns): case=unknown symbol, zero quantity, market closed
+Values:
+symbol | qty | statusCode | errorCode
+ZZZZ | 10 | 400 | UNKNOWN_SYMBOL
+AAPL | 0 | 400 | INVALID_QUANTITY
+AAPL | 10 | 409 | MARKET_CLOSED"
+,Test Case,Order validation returns [statusCode] for [case],3,"Set the request header ""Content-Type"" to ""application/json""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:26
+Feature: Orders REST API
+Scenario: Order validation returns <statusCode> for <case> (Scenario Outline - parameterized)
+Gherkin tags: @api @orders
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test.
+Parameters: @symbol, @qty, @statusCode, @errorCode
+Iterations: 3 | values file: api/orders_api.parameters/01-order-validation-returns-statuscode-for-case.csv
+Examples blocks: rows 1-3 (unnamed)
+Not parameters (title-only/unused columns): case=unknown symbol, zero quantity, market closed
+Values:
+symbol | qty | statusCode | errorCode
+ZZZZ | 10 | 400 | UNKNOWN_SYMBOL
+AAPL | 0 | 400 | INVALID_QUANTITY
+AAPL | 10 | 409 | MARKET_CLOSED"
+,Test Case,Order validation returns [statusCode] for [case],4,"Send a POST request to ""/v1/orders"" with this body:
+{ ""clientId"": ""TRD1001"", ""symbol"": ""@symbol"", ""side"": ""BUY"", ""type"": ""MARKET"", ""quantity"": @qty }","Response status code is @statusCode
+Response body field ""error.code"" is ""@errorCode""",StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:26
+Feature: Orders REST API
+Scenario: Order validation returns <statusCode> for <case> (Scenario Outline - parameterized)
+Gherkin tags: @api @orders
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test.
+Parameters: @symbol, @qty, @statusCode, @errorCode
+Iterations: 3 | values file: api/orders_api.parameters/01-order-validation-returns-statuscode-for-case.csv
+Examples blocks: rows 1-3 (unnamed)
+Not parameters (title-only/unused columns): case=unknown symbol, zero quantity, market closed
+Values:
+symbol | qty | statusCode | errorCode
+ZZZZ | 10 | 400 | UNKNOWN_SYMBOL
+AAPL | 0 | 400 | INVALID_QUANTITY
+AAPL | 10 | 409 | MARKET_CLOSED"
+,Test Case,Get order by ID,1,"Set the API base URL to ""https://api.stockbroker.test""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:40
+Feature: Orders REST API
+Scenario: Get order by ID (Scenario)
+Gherkin tags: @api @orders
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Get order by ID,2,"Set the request header ""Authorization"" to ""Bearer ***MASKED***""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:40
+Feature: Orders REST API
+Scenario: Get order by ID (Scenario)
+Gherkin tags: @api @orders
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Get order by ID,3,"Set the request header ""Content-Type"" to ""application/json""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:40
+Feature: Orders REST API
+Scenario: Get order by ID (Scenario)
+Gherkin tags: @api @orders
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Get order by ID,4,"Send a GET request to ""/v1/orders/ORD-5001"" with query parameters:
+include = fills","Response status code is 200
+Response body contains:
+field = value
+orderId = ORD-5001
+status = OPEN
+Response time is below 500 ms",StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:40
+Feature: Orders REST API
+Scenario: Get order by ID (Scenario)
+Gherkin tags: @api @orders
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Successful login with valid credentials,1,Open the StockBroker login page,,StockBroker\Regression\auth\login,qa.lead@broker.example,Design,auth; login,"Source: samples/stock-broker/features/auth/login.feature:10
+Feature: Trader login
+Scenario: Successful login with valid credentials (Scenario)
+Gherkin tags: @auth @P1 @smoke
+Context: Traders sign in to the StockBroker web platform with their client ID and password. Accounts are locked after 3 failed attempts.
+Test type: UI (default (no API evidence))"
+,Test Case,Successful login with valid credentials,2,"Log in with client ID ""TRD1001"" and password ""Secure#2024""","The trading dashboard is displayed
+The header shows ""Welcome, TRD1001""",StockBroker\Regression\auth\login,qa.lead@broker.example,Design,auth; login,"Source: samples/stock-broker/features/auth/login.feature:10
+Feature: Trader login
+Scenario: Successful login with valid credentials (Scenario)
+Gherkin tags: @auth @P1 @smoke
+Context: Traders sign in to the StockBroker web platform with their client ID and password. Accounts are locked after 3 failed attempts.
+Test type: UI (default (no API evidence))"
+,Test Case,Login is rejected for [reason],1,Open the StockBroker login page,,StockBroker\Regression\auth\login,qa.lead@broker.example,Design,auth; login,"Source: samples/stock-broker/features/auth/login.feature:15
+Feature: Trader login
+Scenario: Login is rejected for <reason> (Scenario Outline - parameterized)
+Gherkin tags: @auth @P1 @negative @security
+Context: Traders sign in to the StockBroker web platform with their client ID and password. Accounts are locked after 3 failed attempts.
+Test type: UI (default (no API evidence))
+Parameters: @clientId, @password, @error
+Iterations: 3 | values file: auth/login.parameters/01-login-is-rejected-for-reason.csv
+Examples blocks: rows 1-2 ""invalid credentials"" @negative; row 3 ""locked account"" @negative @security
+Not parameters (title-only/unused columns): reason=wrong password, unknown client, locked account
+Values:
+clientId | password | error
+TRD1001 | wrong | Invalid client ID or password
+TRD9999 | Secure#2024 | Invalid client ID or password
+TRD2002 | Secure#2024 | Account locked. Contact support@broker.example"
+,Test Case,Login is rejected for [reason],2,"Log in with client ID ""@clientId"" and password ""@password""","The error message ""@error"" is displayed
+The trader remains on the login page",StockBroker\Regression\auth\login,qa.lead@broker.example,Design,auth; login,"Source: samples/stock-broker/features/auth/login.feature:15
+Feature: Trader login
+Scenario: Login is rejected for <reason> (Scenario Outline - parameterized)
+Gherkin tags: @auth @P1 @negative @security
+Context: Traders sign in to the StockBroker web platform with their client ID and password. Accounts are locked after 3 failed attempts.
+Test type: UI (default (no API evidence))
+Parameters: @clientId, @password, @error
+Iterations: 3 | values file: auth/login.parameters/01-login-is-rejected-for-reason.csv
+Examples blocks: rows 1-2 ""invalid credentials"" @negative; row 3 ""locked account"" @negative @security
+Not parameters (title-only/unused columns): reason=wrong password, unknown client, locked account
+Values:
+clientId | password | error
+TRD1001 | wrong | Invalid client ID or password
+TRD9999 | Secure#2024 | Invalid client ID or password
+TRD2002 | Secure#2024 | Account locked. Contact support@broker.example"
+,Test Case,Forgot password sends a reset link,1,Open the StockBroker login page,,StockBroker\Regression\auth\login,qa.lead@broker.example,Design,auth; login,"Source: samples/stock-broker/features/auth/login.feature:31
+Feature: Trader login
+Scenario: Forgot password sends a reset link (Scenario)
+Gherkin tags: @auth @P1
+Context: Traders sign in to the StockBroker web platform with their client ID and password. Accounts are locked after 3 failed attempts.
+Test type: UI (default (no API evidence))"
+,Test Case,Forgot password sends a reset link,2,"Request a password reset for ""trader.one@broker.example""","A reset link is sent to ""trader.one@broker.example""",StockBroker\Regression\auth\login,qa.lead@broker.example,Design,auth; login,"Source: samples/stock-broker/features/auth/login.feature:31
+Feature: Trader login
+Scenario: Forgot password sends a reset link (Scenario)
+Gherkin tags: @auth @P1
+Context: Traders sign in to the StockBroker web platform with their client ID and password. Accounts are locked after 3 failed attempts.
+Test type: UI (default (no API evidence))"
+,Test Case,Quote endpoint returns the last traded price,1,"Send a GET request to ""/v1/quotes/AAPL""","Response status code is 200
+Response body field ""lastPrice"" is a positive number",StockBroker\Regression\market-data\quotes,qa.lead@broker.example,Design,market-data; quotes,"Source: samples/stock-broker/features/market-data/quotes.feature:3
+Feature: Market quotes
+Scenario: Quote endpoint returns the last traded price (Scenario)
+Test type: API (detected from steps: 3 API)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Price alert created via API is shown in the web watchlist,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\market-data\quotes,qa.lead@broker.example,Design,market-data; quotes,"Source: samples/stock-broker/features/market-data/quotes.feature:8
+Feature: Market quotes
+Scenario: Price alert created via API is shown in the web watchlist (Scenario)
+Test type: Hybrid (API + UI) (detected from steps: 1 API, 2 UI)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Price alert created via API is shown in the web watchlist,2,"Send a POST request to ""/v1/alerts"" with this body:
+{ ""symbol"": ""AAPL"", ""target"": 155.00 }",,StockBroker\Regression\market-data\quotes,qa.lead@broker.example,Design,market-data; quotes,"Source: samples/stock-broker/features/market-data/quotes.feature:8
+Feature: Market quotes
+Scenario: Price alert created via API is shown in the web watchlist (Scenario)
+Test type: Hybrid (API + UI) (detected from steps: 1 API, 2 UI)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Price alert created via API is shown in the web watchlist,3,Open the watchlist page,"The alert for ""AAPL"" at 155.00 is displayed",StockBroker\Regression\market-data\quotes,qa.lead@broker.example,Design,market-data; quotes,"Source: samples/stock-broker/features/market-data/quotes.feature:8
+Feature: Market quotes
+Scenario: Price alert created via API is shown in the web watchlist (Scenario)
+Test type: Hybrid (API + UI) (detected from steps: 1 API, 2 UI)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Add a symbol to the watchlist,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:7
+Feature: Watchlist
+Scenario: Add a symbol to the watchlist (Scenario)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))"
+,Test Case,Add a symbol to the watchlist,2,"Add ""AAPL"" to the watchlist","""AAPL"" is shown in the watchlist with its last traded price",StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:7
+Feature: Watchlist
+Scenario: Add a symbol to the watchlist (Scenario)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))"
+,Test Case,Add a symbol to the watchlist (2),1,"Log in as trader ""TRD1001""",,StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:11
+Feature: Watchlist
+Scenario: Add a symbol to the watchlist (Scenario)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))"
+,Test Case,Add a symbol to the watchlist (2),2,"Add ""aapl"" in lower case to the watchlist","""AAPL"" is shown in the watchlist with its last traded price",StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:11
+Feature: Watchlist
+Scenario: Add a symbol to the watchlist (Scenario)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))"
+,Test Case,Price alert for [symbol],1,"Log in as trader ""TRD1001""",,StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:15
+Feature: Watchlist
+Scenario: Price alert for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @target
+Iterations: 1 | values file: market-data/watch#list.parameters/01-price-alert-for-symbol.csv
+Examples blocks: row 1 (unnamed)
+Values:
+symbol | target
+AAPL | 155.00"
+,Test Case,Price alert for [symbol],2,"Set a price alert for ""@symbol"" at @target",,StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:15
+Feature: Watchlist
+Scenario: Price alert for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @target
+Iterations: 1 | values file: market-data/watch#list.parameters/01-price-alert-for-symbol.csv
+Examples blocks: row 1 (unnamed)
+Values:
+symbol | target
+AAPL | 155.00"
+,Test Case,Price alert for [symbol],3,"Wait until the price of ""@symbol"" reaches @target","A notification ""@symbol reached @target"" is shown",StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:15
+Feature: Watchlist
+Scenario: Price alert for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @target
+Iterations: 1 | values file: market-data/watch#list.parameters/01-price-alert-for-symbol.csv
+Examples blocks: row 1 (unnamed)
+Values:
+symbol | target
+AAPL | 155.00"
+,Test Case,Watchlist sorting by [column],1,"Log in as trader ""TRD1001""",,StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:24
+Feature: Watchlist
+Scenario: Watchlist sorting by <column> (Scenario Outline - parameterized)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))
+Parameters: @column, @direction
+Iterations: 1 | values file: market-data/watch#list.parameters/02-watchlist-sorting-by-column.csv
+Examples blocks: row 1 (unnamed)
+Values:
+column | direction
+Change | desc"
+,Test Case,Watchlist sorting by [column],2,"Sort the watchlist by ""@column"" in @direction order","The watchlist is sorted by ""@column"" @direction",StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:24
+Feature: Watchlist
+Scenario: Watchlist sorting by <column> (Scenario Outline - parameterized)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))
+Parameters: @column, @direction
+Iterations: 1 | values file: market-data/watch#list.parameters/02-watchlist-sorting-by-column.csv
+Examples blocks: row 1 (unnamed)
+Values:
+column | direction
+Change | desc"
+,Test Case,Holdings table shows current positions,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:7
+Feature: Portfolio holdings
+Scenario: Holdings table shows current positions (Scenario)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))"
+,Test Case,Holdings table shows current positions,2,"Ensure the trader holds the following positions:
+| Symbol | Quantity | Avg Price |
+| AAPL | 10 | 145.20 |
+| MSFT | 5 | 310.00 |",,StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:7
+Feature: Portfolio holdings
+Scenario: Holdings table shows current positions (Scenario)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))"
+,Test Case,Holdings table shows current positions,3,Open the holdings page,"The holdings table lists 2 positions
+The total market value is shown in ""USD""",StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:7
+Feature: Portfolio holdings
+Scenario: Holdings table shows current positions (Scenario)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))"
+,Test Case,Unrealised P&L for [symbol],1,"Log in as trader ""TRD1001""",,StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:16
+Feature: Portfolio holdings
+Scenario: Unrealised P&L for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @quantity, @avg_price, @ltp, @pnl
+Iterations: 3 | values file: portfolio/holdings.parameters/01-unrealised-p-l-for-symbol.csv
+Examples blocks: row 1 ""gains""; rows 2-3 ""losses and flat""
+Not parameters (title-only/unused columns): account-id=ACC-01, ACC-02
+Values:
+symbol | quantity | avg_price | ltp | pnl
+AAPL | 10 | 145.20 | 150.20 | +50.00
+MSFT | 5 | 310.00 | 300.00 | -50.00
+INFY | 20 | 18.50 | 18.50 | 0.00"
+,Test Case,Unrealised P&L for [symbol],2,"Ensure the trader holds @quantity shares of ""@symbol"" bought at @avg_price",,StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:16
+Feature: Portfolio holdings
+Scenario: Unrealised P&L for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @quantity, @avg_price, @ltp, @pnl
+Iterations: 3 | values file: portfolio/holdings.parameters/01-unrealised-p-l-for-symbol.csv
+Examples blocks: row 1 ""gains""; rows 2-3 ""losses and flat""
+Not parameters (title-only/unused columns): account-id=ACC-01, ACC-02
+Values:
+symbol | quantity | avg_price | ltp | pnl
+AAPL | 10 | 145.20 | 150.20 | +50.00
+MSFT | 5 | 310.00 | 300.00 | -50.00
+INFY | 20 | 18.50 | 18.50 | 0.00"
+,Test Case,Unrealised P&L for [symbol],3,"Ensure the last traded price of ""@symbol"" is @ltp",,StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:16
+Feature: Portfolio holdings
+Scenario: Unrealised P&L for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @quantity, @avg_price, @ltp, @pnl
+Iterations: 3 | values file: portfolio/holdings.parameters/01-unrealised-p-l-for-symbol.csv
+Examples blocks: row 1 ""gains""; rows 2-3 ""losses and flat""
+Not parameters (title-only/unused columns): account-id=ACC-01, ACC-02
+Values:
+symbol | quantity | avg_price | ltp | pnl
+AAPL | 10 | 145.20 | 150.20 | +50.00
+MSFT | 5 | 310.00 | 300.00 | -50.00
+INFY | 20 | 18.50 | 18.50 | 0.00"
+,Test Case,Unrealised P&L for [symbol],4,Open the holdings page,"The unrealised P&L for ""@symbol"" is ""@pnl""",StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:16
+Feature: Portfolio holdings
+Scenario: Unrealised P&L for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @quantity, @avg_price, @ltp, @pnl
+Iterations: 3 | values file: portfolio/holdings.parameters/01-unrealised-p-l-for-symbol.csv
+Examples blocks: row 1 ""gains""; rows 2-3 ""losses and flat""
+Not parameters (title-only/unused columns): account-id=ACC-01, ACC-02
+Values:
+symbol | quantity | avg_price | ltp | pnl
+AAPL | 10 | 145.20 | 150.20 | +50.00
+MSFT | 5 | 310.00 | 300.00 | -50.00
+INFY | 20 | 18.50 | 18.50 | 0.00"
+,Test Case,Export holdings as [format],1,"Log in as trader ""TRD1001""",,StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:31
+Feature: Portfolio holdings
+Scenario: Export holdings as <format> (Scenario Outline - parameterized)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))
+Parameters: @accountId, @format, @file_name
+Iterations: 2 | values file: portfolio/holdings.parameters/02-export-holdings-as-format.csv
+Examples blocks: rows 1-2 (unnamed)
+Values:
+accountId | format | file_name
+ACC-01 | CSV | holdings_ACC-01.csv
+ACC-01 | PDF | "
+,Test Case,Export holdings as [format],2,"Export the holdings for account ""@accountId"" as ""@format""","A ""@format"" file named ""@file_name"" is downloaded",StockBroker\Regression\portfolio\holdings,qa.lead@broker.example,Design,portfolio; holdings,"Source: samples/stock-broker/features/portfolio/holdings.feature:31
+Feature: Portfolio holdings
+Scenario: Export holdings as <format> (Scenario Outline - parameterized)
+Gherkin tags: @portfolio
+Test type: UI (default (no API evidence))
+Parameters: @accountId, @format, @file_name
+Iterations: 2 | values file: portfolio/holdings.parameters/02-export-holdings-as-format.csv
+Examples blocks: rows 1-2 (unnamed)
+Values:
+accountId | format | file_name
+ACC-01 | CSV | holdings_ACC-01.csv
+ACC-01 | PDF | "
+48213,Test Case,Cancel an open order,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:9
+Feature: Cancel open orders
+Scenario: Cancel an open order (Scenario)
+Gherkin tags: @trading @orders @smoke
+Test type: UI (default (no API evidence))"
+48213,Test Case,Cancel an open order,2,"Ensure the trader has an open limit order ""ORD-5001"" to BUY 20 ""INFY"" at 18.50",,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:9
+Feature: Cancel open orders
+Scenario: Cancel an open order (Scenario)
+Gherkin tags: @trading @orders @smoke
+Test type: UI (default (no API evidence))"
+48213,Test Case,Cancel an open order,3,"Cancel order ""ORD-5001""","The order status is ""CANCELLED""
+The reserved funds are released",StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:9
+Feature: Cancel open orders
+Scenario: Cancel an open order (Scenario)
+Gherkin tags: @trading @orders @smoke
+Test type: UI (default (no API evidence))"
+,Test Case,Cancel confirmation dialog can be dismissed,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:14
+Feature: Cancel open orders
+Scenario: Cancel confirmation dialog can be dismissed (Scenario)
+Gherkin tags: @trading @orders
+Test type: UI (default (no API evidence))"
+,Test Case,Cancel confirmation dialog can be dismissed,2,"Ensure the trader has an open limit order ""ORD-5001"" to BUY 20 ""INFY"" at 18.50",,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:14
+Feature: Cancel open orders
+Scenario: Cancel confirmation dialog can be dismissed (Scenario)
+Gherkin tags: @trading @orders
+Test type: UI (default (no API evidence))"
+,Test Case,Cancel confirmation dialog can be dismissed,3,"Click cancel on order ""ORD-5001""",,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:14
+Feature: Cancel open orders
+Scenario: Cancel confirmation dialog can be dismissed (Scenario)
+Gherkin tags: @trading @orders
+Test type: UI (default (no API evidence))"
+,Test Case,Cancel confirmation dialog can be dismissed,4,Dismiss the confirmation dialog,,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:14
+Feature: Cancel open orders
+Scenario: Cancel confirmation dialog can be dismissed (Scenario)
+Gherkin tags: @trading @orders
+Test type: UI (default (no API evidence))"
+,Test Case,A filled order cannot be cancelled,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:18
+Feature: Cancel open orders
+Scenario: A filled order cannot be cancelled (Scenario)
+Gherkin tags: @trading @orders
+Test type: UI (default (no API evidence))"
+,Test Case,A filled order cannot be cancelled,2,"Ensure the trader has an open limit order ""ORD-5001"" to BUY 20 ""INFY"" at 18.50",,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:18
+Feature: Cancel open orders
+Scenario: A filled order cannot be cancelled (Scenario)
+Gherkin tags: @trading @orders
+Test type: UI (default (no API evidence))"
+,Test Case,A filled order cannot be cancelled,3,"Ensure order ""ORD-5001"" has been filled",,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:18
+Feature: Cancel open orders
+Scenario: A filled order cannot be cancelled (Scenario)
+Gherkin tags: @trading @orders
+Test type: UI (default (no API evidence))"
+,Test Case,A filled order cannot be cancelled,4,"Try to cancel order ""ORD-5001""","The error message ""Order already filled"" is displayed",StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:18
+Feature: Cancel open orders
+Scenario: A filled order cannot be cancelled (Scenario)
+Gherkin tags: @trading @orders
+Test type: UI (default (no API evidence))"
+,Test Case,Place a market [side] order for [symbol],1,"Log in as trader ""TRD1001""",,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:15
+Feature: Place equity orders
+Rule: Market orders execute immediately at the best available price
+Scenario: Place a market <side> order for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @trading @orders @smoke @P1
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))
+Parameters: @side, @symbol, @qty, @status
+Iterations: 3 | values file: trading/orders/place_order.parameters/01-place-a-market-side-order-for-symbol.csv
+Examples blocks: rows 1-3 (unnamed)
+Not parameters (title-only/unused columns): comment=blue chip, sell from holdings, single share edge case
+Values:
+side | symbol | qty | status
+BUY | AAPL | 10 | FILLED
+SELL | MSFT | 5 | FILLED
+BUY | TSLA | 1 | FILLED"
+,Test Case,Place a market [side] order for [symbol],2,Ensure the market is open,,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:15
+Feature: Place equity orders
+Rule: Market orders execute immediately at the best available price
+Scenario: Place a market <side> order for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @trading @orders @smoke @P1
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))
+Parameters: @side, @symbol, @qty, @status
+Iterations: 3 | values file: trading/orders/place_order.parameters/01-place-a-market-side-order-for-symbol.csv
+Examples blocks: rows 1-3 (unnamed)
+Not parameters (title-only/unused columns): comment=blue chip, sell from holdings, single share edge case
+Values:
+side | symbol | qty | status
+BUY | AAPL | 10 | FILLED
+SELL | MSFT | 5 | FILLED
+BUY | TSLA | 1 | FILLED"
+,Test Case,Place a market [side] order for [symbol],3,"Ensure the trader account has available funds of ""50000.00"" USD",,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:15
+Feature: Place equity orders
+Rule: Market orders execute immediately at the best available price
+Scenario: Place a market <side> order for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @trading @orders @smoke @P1
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))
+Parameters: @side, @symbol, @qty, @status
+Iterations: 3 | values file: trading/orders/place_order.parameters/01-place-a-market-side-order-for-symbol.csv
+Examples blocks: rows 1-3 (unnamed)
+Not parameters (title-only/unused columns): comment=blue chip, sell from holdings, single share edge case
+Values:
+side | symbol | qty | status
+BUY | AAPL | 10 | FILLED
+SELL | MSFT | 5 | FILLED
+BUY | TSLA | 1 | FILLED"
+,Test Case,Place a market [side] order for [symbol],4,"Place a market ""@side"" order for @qty shares of ""@symbol""","The order status is ""@status""
+The confirmation shows ""@qty x @symbol""
+The order appears in the order book",StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:15
+Feature: Place equity orders
+Rule: Market orders execute immediately at the best available price
+Scenario: Place a market <side> order for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @trading @orders @smoke @P1
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))
+Parameters: @side, @symbol, @qty, @status
+Iterations: 3 | values file: trading/orders/place_order.parameters/01-place-a-market-side-order-for-symbol.csv
+Examples blocks: rows 1-3 (unnamed)
+Not parameters (title-only/unused columns): comment=blue chip, sell from holdings, single share edge case
+Values:
+side | symbol | qty | status
+BUY | AAPL | 10 | FILLED
+SELL | MSFT | 5 | FILLED
+BUY | TSLA | 1 | FILLED"
+,Test Case,Market order is rejected when funds are insufficient,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:27
+Feature: Place equity orders
+Rule: Market orders execute immediately at the best available price
+Scenario: Market order is rejected when funds are insufficient (Scenario)
+Gherkin tags: @trading @orders
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))"
+,Test Case,Market order is rejected when funds are insufficient,2,Ensure the market is open,,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:27
+Feature: Place equity orders
+Rule: Market orders execute immediately at the best available price
+Scenario: Market order is rejected when funds are insufficient (Scenario)
+Gherkin tags: @trading @orders
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))"
+,Test Case,Market order is rejected when funds are insufficient,3,"Ensure the trader account has available funds of ""50000.00"" USD",,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:27
+Feature: Place equity orders
+Rule: Market orders execute immediately at the best available price
+Scenario: Market order is rejected when funds are insufficient (Scenario)
+Gherkin tags: @trading @orders
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))"
+,Test Case,Market order is rejected when funds are insufficient,4,"Place a market ""BUY"" order for 1000 shares of ""AAPL""","The order is rejected with message ""Insufficient funds""
+No order appears in the order book",StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:27
+Feature: Place equity orders
+Rule: Market orders execute immediately at the best available price
+Scenario: Market order is rejected when funds are insufficient (Scenario)
+Gherkin tags: @trading @orders
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))"
+,Test Case,Place a limit order with [order type] validity,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:35
+Feature: Place equity orders
+Rule: Limit orders wait until the price reaches the limit
+Scenario: Place a limit order with <order type> validity (Scenario Outline - parameterized)
+Gherkin tags: @trading @orders @P2
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @qty, @limit_price, @order_type
+Iterations: 2 | values file: trading/orders/place_order.parameters/02-place-a-limit-order-with-order-type-validity.csv
+Examples blocks: rows 1-2 (unnamed)
+Values:
+symbol | qty | limit_price | order_type
+INFY | 20 | 18.50 | DAY
+AAPL | 5 | 150.00 | GTC"
+,Test Case,Place a limit order with [order type] validity,2,Ensure the market is open,,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:35
+Feature: Place equity orders
+Rule: Limit orders wait until the price reaches the limit
+Scenario: Place a limit order with <order type> validity (Scenario Outline - parameterized)
+Gherkin tags: @trading @orders @P2
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @qty, @limit_price, @order_type
+Iterations: 2 | values file: trading/orders/place_order.parameters/02-place-a-limit-order-with-order-type-validity.csv
+Examples blocks: rows 1-2 (unnamed)
+Values:
+symbol | qty | limit_price | order_type
+INFY | 20 | 18.50 | DAY
+AAPL | 5 | 150.00 | GTC"
+,Test Case,Place a limit order with [order type] validity,3,"Enter the order details:
+Symbol = @symbol
+Side = BUY
+Quantity = @qty
+Limit = @limit_price
+Validity = @order_type",,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:35
+Feature: Place equity orders
+Rule: Limit orders wait until the price reaches the limit
+Scenario: Place a limit order with <order type> validity (Scenario Outline - parameterized)
+Gherkin tags: @trading @orders @P2
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @qty, @limit_price, @order_type
+Iterations: 2 | values file: trading/orders/place_order.parameters/02-place-a-limit-order-with-order-type-validity.csv
+Examples blocks: rows 1-2 (unnamed)
+Values:
+symbol | qty | limit_price | order_type
+INFY | 20 | 18.50 | DAY
+AAPL | 5 | 150.00 | GTC"
+,Test Case,Place a limit order with [order type] validity,4,Submit the order,"The order status is ""OPEN""
+The order shows validity ""@order_type""",StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:35
+Feature: Place equity orders
+Rule: Limit orders wait until the price reaches the limit
+Scenario: Place a limit order with <order type> validity (Scenario Outline - parameterized)
+Gherkin tags: @trading @orders @P2
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @qty, @limit_price, @order_type
+Iterations: 2 | values file: trading/orders/place_order.parameters/02-place-a-limit-order-with-order-type-validity.csv
+Examples blocks: rows 1-2 (unnamed)
+Values:
+symbol | qty | limit_price | order_type
+INFY | 20 | 18.50 | DAY
+AAPL | 5 | 150.00 | GTC"
+,Test Case,Limit order ticket preview,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:51
+Feature: Place equity orders
+Rule: Limit orders wait until the price reaches the limit
+Scenario: Limit order ticket preview (Scenario)
+Gherkin tags: @trading @orders
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))"
+,Test Case,Limit order ticket preview,2,Ensure the market is open,,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:51
+Feature: Place equity orders
+Rule: Limit orders wait until the price reaches the limit
+Scenario: Limit order ticket preview (Scenario)
+Gherkin tags: @trading @orders
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))"
+,Test Case,Limit order ticket preview,3,Preview a limit order ticket,"The ticket preview shows:
+Order type : LIMIT
+Validity   : DAY
+Fees       : 0.1% (min 1.00 USD)",StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:51
+Feature: Place equity orders
+Rule: Limit orders wait until the price reaches the limit
+Scenario: Limit order ticket preview (Scenario)
+Gherkin tags: @trading @orders
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))"

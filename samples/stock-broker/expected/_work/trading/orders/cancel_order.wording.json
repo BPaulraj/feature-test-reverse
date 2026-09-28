@@ -1,0 +1,121 @@
+{
+  "feature": "samples/stock-broker/features/trading/orders/cancel_order.feature",
+  "howTo": "Fill 'action' and 'expected' for every row (rules: instructions §4). Keep every @parameter, quoted value, table and doc-string text from 'source'/'sourceExpected'. Leave 'expected' empty when 'sourceExpected' is empty. Don't add, remove or reorder rows.",
+  "testCases": [
+    {
+      "key": "trading/orders/cancel_order.feature::Cancel an open order",
+      "scenarioTitle": "Cancel an open order",
+      "title": "Cancel an open order",
+      "testType": "ui",
+      "parameters": [],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "neutral",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "action": "Log in as trader \"TRD1001\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "neutral",
+          "source": "And the trader has an open limit order \"ORD-5001\" to BUY 20 \"INFY\" at 18.50",
+          "sourceExpected": "",
+          "action": "Ensure the trader has an open limit order \"ORD-5001\" to BUY 20 \"INFY\" at 18.50",
+          "expected": ""
+        },
+        {
+          "step": 3,
+          "stepType": "neutral",
+          "source": "When the trader cancels order \"ORD-5001\"",
+          "sourceExpected": "Then the order status is \"CANCELLED\"\nAnd the reserved funds are released",
+          "action": "Cancel order \"ORD-5001\"",
+          "expected": "The order status is \"CANCELLED\"\nThe reserved funds are released"
+        }
+      ]
+    },
+    {
+      "key": "trading/orders/cancel_order.feature::Cancel confirmation dialog can be dismissed",
+      "scenarioTitle": "Cancel confirmation dialog can be dismissed",
+      "title": "Cancel confirmation dialog can be dismissed",
+      "testType": "ui",
+      "parameters": [],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "neutral",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "action": "Log in as trader \"TRD1001\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "neutral",
+          "source": "And the trader has an open limit order \"ORD-5001\" to BUY 20 \"INFY\" at 18.50",
+          "sourceExpected": "",
+          "action": "Ensure the trader has an open limit order \"ORD-5001\" to BUY 20 \"INFY\" at 18.50",
+          "expected": ""
+        },
+        {
+          "step": 3,
+          "stepType": "ui",
+          "source": "When the trader clicks cancel on order \"ORD-5001\"",
+          "sourceExpected": "",
+          "action": "Click cancel on order \"ORD-5001\"",
+          "expected": ""
+        },
+        {
+          "step": 4,
+          "stepType": "ui",
+          "source": "And the trader dismisses the confirmation dialog",
+          "sourceExpected": "",
+          "action": "Dismiss the confirmation dialog",
+          "expected": ""
+        }
+      ]
+    },
+    {
+      "key": "trading/orders/cancel_order.feature::A filled order cannot be cancelled",
+      "scenarioTitle": "A filled order cannot be cancelled",
+      "title": "A filled order cannot be cancelled",
+      "testType": "ui",
+      "parameters": [],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "neutral",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "action": "Log in as trader \"TRD1001\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "neutral",
+          "source": "And the trader has an open limit order \"ORD-5001\" to BUY 20 \"INFY\" at 18.50",
+          "sourceExpected": "",
+          "action": "Ensure the trader has an open limit order \"ORD-5001\" to BUY 20 \"INFY\" at 18.50",
+          "expected": ""
+        },
+        {
+          "step": 3,
+          "stepType": "neutral",
+          "source": "Given order \"ORD-5001\" has been filled",
+          "sourceExpected": "",
+          "action": "Ensure order \"ORD-5001\" has been filled",
+          "expected": ""
+        },
+        {
+          "step": 4,
+          "stepType": "neutral",
+          "source": "When the trader tries to cancel order \"ORD-5001\"",
+          "sourceExpected": "Then the error message \"Order already filled\" is displayed",
+          "action": "Try to cancel order \"ORD-5001\"",
+          "expected": "The error message \"Order already filled\" is displayed"
+        }
+      ]
+    }
+  ]
+}

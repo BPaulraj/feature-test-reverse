@@ -1,0 +1,358 @@
+{
+  "rel": "portfolio/holdings.feature",
+  "relNoExt": "portfolio/holdings",
+  "source": "samples/stock-broker/features/portfolio/holdings.feature",
+  "areaPath": "StockBroker\\Regression\\portfolio\\holdings",
+  "flags": [],
+  "testCases": [
+    {
+      "key": "portfolio/holdings.feature::Holdings table shows current positions",
+      "title": "Holdings table shows current positions",
+      "originalName": "Holdings table shows current positions",
+      "line": 7,
+      "where": "samples/stock-broker/features/portfolio/holdings.feature:7",
+      "isOutline": false,
+      "areaPath": "StockBroker\\Regression\\portfolio\\holdings",
+      "tags": [
+        "portfolio",
+        "holdings"
+      ],
+      "gherkinTags": [
+        "@portfolio"
+      ],
+      "rule": "",
+      "existingTagId": null,
+      "flags": [],
+      "testType": "ui",
+      "testTypeReason": "default (no API evidence)",
+      "scenarioTitle": "Holdings table shows current positions",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            5
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "Given",
+          "source": "Given the trader holds the following positions:\n| Symbol | Quantity | Avg Price |\n| AAPL | 10 | 145.20 |\n| MSFT | 5 | 310.00 |",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            8
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When the trader opens the holdings page",
+          "sourceExpected": "Then the holdings table lists 2 positions\nAnd the total market value is shown in \"USD\"",
+          "verify": false,
+          "lines": [
+            12,
+            13,
+            14
+          ],
+          "stepType": "ui",
+          "payload": ""
+        }
+      ],
+      "description": "Source: samples/stock-broker/features/portfolio/holdings.feature:7\nFeature: Portfolio holdings\nScenario: Holdings table shows current positions (Scenario)\nGherkin tags: @portfolio\nTest type: UI (default (no API evidence))",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    },
+    {
+      "key": "portfolio/holdings.feature::Unrealised P&L for <symbol>",
+      "title": "Unrealised P&L for [symbol]",
+      "originalName": "Unrealised P&L for <symbol>",
+      "line": 16,
+      "where": "samples/stock-broker/features/portfolio/holdings.feature:16",
+      "isOutline": true,
+      "areaPath": "StockBroker\\Regression\\portfolio\\holdings",
+      "tags": [
+        "portfolio",
+        "holdings"
+      ],
+      "gherkinTags": [
+        "@portfolio"
+      ],
+      "rule": "",
+      "existingTagId": null,
+      "flags": [
+        "Examples blocks have different columns - merged, missing cells left empty",
+        "Parameter <avg price> renamed to @avg_price",
+        "Examples column 'account-id' is unused - not a parameter"
+      ],
+      "testType": "ui",
+      "testTypeReason": "default (no API evidence)",
+      "scenarioTitle": "Unrealised P&L for [symbol]",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            5
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "Given",
+          "source": "Given the trader holds @quantity shares of \"@symbol\" bought at @avg_price",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            17
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "Given",
+          "source": "And the last traded price of \"@symbol\" is @ltp",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            18
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When the trader opens the holdings page",
+          "sourceExpected": "Then the unrealised P&L for \"@symbol\" is \"@pnl\"",
+          "verify": false,
+          "lines": [
+            19,
+            20
+          ],
+          "stepType": "ui",
+          "payload": ""
+        }
+      ],
+      "parameters": [
+        "symbol",
+        "quantity",
+        "avg_price",
+        "ltp",
+        "pnl"
+      ],
+      "placeholderToParam": {
+        "symbol": "symbol",
+        "quantity": "quantity",
+        "avg price": "avg_price",
+        "ltp": "ltp",
+        "pnl": "pnl"
+      },
+      "placeholderUse": {
+        "quantity": [
+          "Given:text:setup"
+        ],
+        "symbol": [
+          "And:text:setup",
+          "Given:text:setup",
+          "Then:text:expected"
+        ],
+        "avg price": [
+          "Given:text:setup"
+        ],
+        "ltp": [
+          "And:text:setup"
+        ],
+        "pnl": [
+          "Then:text:expected"
+        ]
+      },
+      "placeholdersInTitle": [
+        "symbol"
+      ],
+      "notParameters": {
+        "account-id": [
+          "ACC-01",
+          "ACC-02"
+        ]
+      },
+      "values": [
+        [
+          "AAPL",
+          "10",
+          "145.20",
+          "150.20",
+          "+50.00"
+        ],
+        [
+          "MSFT",
+          "5",
+          "310.00",
+          "300.00",
+          "-50.00"
+        ],
+        [
+          "INFY",
+          "20",
+          "18.50",
+          "18.50",
+          "0.00"
+        ]
+      ],
+      "examplesBlocks": [
+        "row 1 \"gains\"",
+        "rows 2-3 \"losses and flat\""
+      ],
+      "examplesDetail": [
+        {
+          "name": "gains",
+          "tags": [],
+          "columns": [
+            "symbol",
+            "quantity",
+            "avg price",
+            "ltp",
+            "pnl"
+          ],
+          "rows": 1
+        },
+        {
+          "name": "losses and flat",
+          "tags": [],
+          "columns": [
+            "symbol",
+            "quantity",
+            "avg price",
+            "ltp",
+            "pnl",
+            "account-id"
+          ],
+          "rows": 2
+        }
+      ],
+      "valuesFile": "portfolio/holdings.parameters/01-unrealised-p-l-for-symbol.csv",
+      "description": "Source: samples/stock-broker/features/portfolio/holdings.feature:16\nFeature: Portfolio holdings\nScenario: Unrealised P&L for <symbol> (Scenario Outline - parameterized)\nGherkin tags: @portfolio\nTest type: UI (default (no API evidence))\nParameters: @symbol, @quantity, @avg_price, @ltp, @pnl\nIterations: 3 | values file: portfolio/holdings.parameters/01-unrealised-p-l-for-symbol.csv\nExamples blocks: row 1 \"gains\"; rows 2-3 \"losses and flat\"\nNot parameters (title-only/unused columns): account-id=ACC-01, ACC-02\nValues:\nsymbol | quantity | avg_price | ltp | pnl\nAAPL | 10 | 145.20 | 150.20 | +50.00\nMSFT | 5 | 310.00 | 300.00 | -50.00\nINFY | 20 | 18.50 | 18.50 | 0.00",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    },
+    {
+      "key": "portfolio/holdings.feature::Export holdings as <format>",
+      "title": "Export holdings as [format]",
+      "originalName": "Export holdings as <format>",
+      "line": 31,
+      "where": "samples/stock-broker/features/portfolio/holdings.feature:31",
+      "isOutline": true,
+      "areaPath": "StockBroker\\Regression\\portfolio\\holdings",
+      "tags": [
+        "portfolio",
+        "holdings"
+      ],
+      "gherkinTags": [
+        "@portfolio"
+      ],
+      "rule": "",
+      "existingTagId": null,
+      "flags": [
+        "Parameter <file name> renamed to @file_name"
+      ],
+      "testType": "ui",
+      "testTypeReason": "default (no API evidence)",
+      "scenarioTitle": "Export holdings as [format]",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            5
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When the trader exports holdings for account \"@accountId\" as \"@format\"",
+          "sourceExpected": "Then a \"@format\" file named \"@file_name\" is downloaded",
+          "verify": false,
+          "lines": [
+            32,
+            33
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        }
+      ],
+      "parameters": [
+        "accountId",
+        "format",
+        "file_name"
+      ],
+      "placeholderToParam": {
+        "accountId": "accountId",
+        "format": "format",
+        "file name": "file_name"
+      },
+      "placeholderUse": {
+        "accountId": [
+          "When:text:action"
+        ],
+        "format": [
+          "Then:text:expected",
+          "When:text:action"
+        ],
+        "file name": [
+          "Then:text:expected"
+        ]
+      },
+      "placeholdersInTitle": [
+        "format"
+      ],
+      "notParameters": {},
+      "values": [
+        [
+          "ACC-01",
+          "CSV",
+          "holdings_ACC-01.csv"
+        ],
+        [
+          "ACC-01",
+          "PDF",
+          ""
+        ]
+      ],
+      "examplesBlocks": [
+        "rows 1-2 (unnamed)"
+      ],
+      "examplesDetail": [
+        {
+          "name": "",
+          "tags": [],
+          "columns": [
+            "accountId",
+            "format",
+            "file name"
+          ],
+          "rows": 2
+        }
+      ],
+      "valuesFile": "portfolio/holdings.parameters/02-export-holdings-as-format.csv",
+      "description": "Source: samples/stock-broker/features/portfolio/holdings.feature:31\nFeature: Portfolio holdings\nScenario: Export holdings as <format> (Scenario Outline - parameterized)\nGherkin tags: @portfolio\nTest type: UI (default (no API evidence))\nParameters: @accountId, @format, @file_name\nIterations: 2 | values file: portfolio/holdings.parameters/02-export-holdings-as-format.csv\nExamples blocks: rows 1-2 (unnamed)\nValues:\naccountId | format | file_name\nACC-01 | CSV | holdings_ACC-01.csv\nACC-01 | PDF | ",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    }
+  ],
+  "commentedOut": [],
+  "name": "Portfolio holdings"
+}

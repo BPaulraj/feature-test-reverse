@@ -1,0 +1,76 @@
+ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area Path,Assigned To,State,Tags,Description
+,Test Case,Add a symbol to the watchlist,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:7
+Feature: Watchlist
+Scenario: Add a symbol to the watchlist (Scenario)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))"
+,Test Case,Add a symbol to the watchlist,2,"Add ""AAPL"" to the watchlist","""AAPL"" is shown in the watchlist with its last traded price",StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:7
+Feature: Watchlist
+Scenario: Add a symbol to the watchlist (Scenario)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))"
+,Test Case,Add a symbol to the watchlist (2),1,"Log in as trader ""TRD1001""",,StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:11
+Feature: Watchlist
+Scenario: Add a symbol to the watchlist (Scenario)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))"
+,Test Case,Add a symbol to the watchlist (2),2,"Add ""aapl"" in lower case to the watchlist","""AAPL"" is shown in the watchlist with its last traded price",StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:11
+Feature: Watchlist
+Scenario: Add a symbol to the watchlist (Scenario)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))"
+,Test Case,Price alert for [symbol],1,"Log in as trader ""TRD1001""",,StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:15
+Feature: Watchlist
+Scenario: Price alert for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @target
+Iterations: 1 | values file: market-data/watch#list.parameters/01-price-alert-for-symbol.csv
+Examples blocks: row 1 (unnamed)
+Values:
+symbol | target
+AAPL | 155.00"
+,Test Case,Price alert for [symbol],2,"Set a price alert for ""@symbol"" at @target",,StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:15
+Feature: Watchlist
+Scenario: Price alert for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @target
+Iterations: 1 | values file: market-data/watch#list.parameters/01-price-alert-for-symbol.csv
+Examples blocks: row 1 (unnamed)
+Values:
+symbol | target
+AAPL | 155.00"
+,Test Case,Price alert for [symbol],3,"Wait until the price of ""@symbol"" reaches @target","A notification ""@symbol reached @target"" is shown",StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:15
+Feature: Watchlist
+Scenario: Price alert for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @target
+Iterations: 1 | values file: market-data/watch#list.parameters/01-price-alert-for-symbol.csv
+Examples blocks: row 1 (unnamed)
+Values:
+symbol | target
+AAPL | 155.00"
+,Test Case,Watchlist sorting by [column],1,"Log in as trader ""TRD1001""",,StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:24
+Feature: Watchlist
+Scenario: Watchlist sorting by <column> (Scenario Outline - parameterized)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))
+Parameters: @column, @direction
+Iterations: 1 | values file: market-data/watch#list.parameters/02-watchlist-sorting-by-column.csv
+Examples blocks: row 1 (unnamed)
+Values:
+column | direction
+Change | desc"
+,Test Case,Watchlist sorting by [column],2,"Sort the watchlist by ""@column"" in @direction order","The watchlist is sorted by ""@column"" @direction",StockBroker\Regression\market-data\watch-list,qa.lead@broker.example,Design,market-data; watch-list,"Source: samples/stock-broker/features/market-data/watch#list.feature:24
+Feature: Watchlist
+Scenario: Watchlist sorting by <column> (Scenario Outline - parameterized)
+Gherkin tags: @market-data
+Test type: UI (default (no API evidence))
+Parameters: @column, @direction
+Iterations: 1 | values file: market-data/watch#list.parameters/02-watchlist-sorting-by-column.csv
+Examples blocks: row 1 (unnamed)
+Values:
+column | direction
+Change | desc"

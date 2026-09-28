@@ -1,0 +1,172 @@
+{
+  "feature": "samples/stock-broker/features/trading/orders/place_order.feature",
+  "howTo": "Fill 'action' and 'expected' for every row (rules: instructions §4). Keep every @parameter, quoted value, table and doc-string text from 'source'/'sourceExpected'. Leave 'expected' empty when 'sourceExpected' is empty. Don't add, remove or reorder rows.",
+  "testCases": [
+    {
+      "key": "trading/orders/place_order.feature::Market orders execute immediately at the best available price > Place a market <side> order for <symbol>",
+      "scenarioTitle": "Place a market [side] order for [symbol]",
+      "title": "Place a market [side] order for [symbol]",
+      "testType": "ui",
+      "parameters": [
+        "side",
+        "symbol",
+        "qty",
+        "status"
+      ],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "neutral",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "action": "Log in as trader \"TRD1001\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "neutral",
+          "source": "And the market is open",
+          "sourceExpected": "",
+          "action": "Ensure the market is open",
+          "expected": ""
+        },
+        {
+          "step": 3,
+          "stepType": "neutral",
+          "source": "Given the trader has available funds of \"50000.00\" USD",
+          "sourceExpected": "",
+          "action": "Ensure the trader account has available funds of \"50000.00\" USD",
+          "expected": ""
+        },
+        {
+          "step": 4,
+          "stepType": "neutral",
+          "source": "When the trader places a market \"@side\" order for @qty shares of \"@symbol\"",
+          "sourceExpected": "Then the order status is \"@status\"\nAnd the confirmation shows \"@qty x @symbol\"\nAnd the order appears in the order book",
+          "action": "Place a market \"@side\" order for @qty shares of \"@symbol\"",
+          "expected": "The order status is \"@status\"\nThe confirmation shows \"@qty x @symbol\"\nThe order appears in the order book"
+        }
+      ]
+    },
+    {
+      "key": "trading/orders/place_order.feature::Market orders execute immediately at the best available price > Market order is rejected when funds are insufficient",
+      "scenarioTitle": "Market order is rejected when funds are insufficient",
+      "title": "Market order is rejected when funds are insufficient",
+      "testType": "ui",
+      "parameters": [],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "neutral",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "action": "Log in as trader \"TRD1001\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "neutral",
+          "source": "And the market is open",
+          "sourceExpected": "",
+          "action": "Ensure the market is open",
+          "expected": ""
+        },
+        {
+          "step": 3,
+          "stepType": "neutral",
+          "source": "Given the trader has available funds of \"50000.00\" USD",
+          "sourceExpected": "",
+          "action": "Ensure the trader account has available funds of \"50000.00\" USD",
+          "expected": ""
+        },
+        {
+          "step": 4,
+          "stepType": "neutral",
+          "source": "When the trader places a market \"BUY\" order for 1000 shares of \"AAPL\"",
+          "sourceExpected": "Then the order is rejected with message \"Insufficient funds\"\nBut no order appears in the order book",
+          "action": "Place a market \"BUY\" order for 1000 shares of \"AAPL\"",
+          "expected": "The order is rejected with message \"Insufficient funds\"\nNo order appears in the order book"
+        }
+      ]
+    },
+    {
+      "key": "trading/orders/place_order.feature::Limit orders wait until the price reaches the limit > Place a limit order with <order type> validity",
+      "scenarioTitle": "Place a limit order with [order type] validity",
+      "title": "Place a limit order with [order type] validity",
+      "testType": "ui",
+      "parameters": [
+        "symbol",
+        "qty",
+        "limit_price",
+        "order_type"
+      ],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "neutral",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "action": "Log in as trader \"TRD1001\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "neutral",
+          "source": "And the market is open",
+          "sourceExpected": "",
+          "action": "Ensure the market is open",
+          "expected": ""
+        },
+        {
+          "step": 3,
+          "stepType": "ui",
+          "source": "When the trader enters the order details:\nSymbol = @symbol\nSide = BUY\nQuantity = @qty\nLimit = @limit_price\nValidity = @order_type",
+          "sourceExpected": "",
+          "action": "Enter the order details:\nSymbol = @symbol\nSide = BUY\nQuantity = @qty\nLimit = @limit_price\nValidity = @order_type",
+          "expected": ""
+        },
+        {
+          "step": 4,
+          "stepType": "neutral",
+          "source": "And the trader submits the order",
+          "sourceExpected": "Then the order status is \"OPEN\"\nAnd the order shows validity \"@order_type\"",
+          "action": "Submit the order",
+          "expected": "The order status is \"OPEN\"\nThe order shows validity \"@order_type\""
+        }
+      ]
+    },
+    {
+      "key": "trading/orders/place_order.feature::Limit orders wait until the price reaches the limit > Limit order ticket preview",
+      "scenarioTitle": "Limit order ticket preview",
+      "title": "Limit order ticket preview",
+      "testType": "ui",
+      "parameters": [],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "neutral",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "action": "Log in as trader \"TRD1001\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "neutral",
+          "source": "And the market is open",
+          "sourceExpected": "",
+          "action": "Ensure the market is open",
+          "expected": ""
+        },
+        {
+          "step": 3,
+          "stepType": "neutral",
+          "source": "When the trader previews a limit order ticket",
+          "sourceExpected": "Then the ticket preview shows:\nOrder type : LIMIT\nValidity   : DAY\nFees       : 0.1% (min 1.00 USD)",
+          "action": "Preview a limit order ticket",
+          "expected": "The ticket preview shows:\nOrder type : LIMIT\nValidity   : DAY\nFees       : 0.1% (min 1.00 USD)"
+        }
+      ]
+    }
+  ]
+}

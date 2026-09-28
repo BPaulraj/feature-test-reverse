@@ -1,0 +1,182 @@
+ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area Path,Assigned To,State,Tags,Description
+,Test Case,Place a market [side] order for [symbol],1,"Log in as trader ""TRD1001""",,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:15
+Feature: Place equity orders
+Rule: Market orders execute immediately at the best available price
+Scenario: Place a market <side> order for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @trading @orders @smoke @P1
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))
+Parameters: @side, @symbol, @qty, @status
+Iterations: 3 | values file: trading/orders/place_order.parameters/01-place-a-market-side-order-for-symbol.csv
+Examples blocks: rows 1-3 (unnamed)
+Not parameters (title-only/unused columns): comment=blue chip, sell from holdings, single share edge case
+Values:
+side | symbol | qty | status
+BUY | AAPL | 10 | FILLED
+SELL | MSFT | 5 | FILLED
+BUY | TSLA | 1 | FILLED"
+,Test Case,Place a market [side] order for [symbol],2,Ensure the market is open,,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:15
+Feature: Place equity orders
+Rule: Market orders execute immediately at the best available price
+Scenario: Place a market <side> order for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @trading @orders @smoke @P1
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))
+Parameters: @side, @symbol, @qty, @status
+Iterations: 3 | values file: trading/orders/place_order.parameters/01-place-a-market-side-order-for-symbol.csv
+Examples blocks: rows 1-3 (unnamed)
+Not parameters (title-only/unused columns): comment=blue chip, sell from holdings, single share edge case
+Values:
+side | symbol | qty | status
+BUY | AAPL | 10 | FILLED
+SELL | MSFT | 5 | FILLED
+BUY | TSLA | 1 | FILLED"
+,Test Case,Place a market [side] order for [symbol],3,"Ensure the trader account has available funds of ""50000.00"" USD",,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:15
+Feature: Place equity orders
+Rule: Market orders execute immediately at the best available price
+Scenario: Place a market <side> order for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @trading @orders @smoke @P1
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))
+Parameters: @side, @symbol, @qty, @status
+Iterations: 3 | values file: trading/orders/place_order.parameters/01-place-a-market-side-order-for-symbol.csv
+Examples blocks: rows 1-3 (unnamed)
+Not parameters (title-only/unused columns): comment=blue chip, sell from holdings, single share edge case
+Values:
+side | symbol | qty | status
+BUY | AAPL | 10 | FILLED
+SELL | MSFT | 5 | FILLED
+BUY | TSLA | 1 | FILLED"
+,Test Case,Place a market [side] order for [symbol],4,"Place a market ""@side"" order for @qty shares of ""@symbol""","The order status is ""@status""
+The confirmation shows ""@qty x @symbol""
+The order appears in the order book",StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:15
+Feature: Place equity orders
+Rule: Market orders execute immediately at the best available price
+Scenario: Place a market <side> order for <symbol> (Scenario Outline - parameterized)
+Gherkin tags: @trading @orders @smoke @P1
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))
+Parameters: @side, @symbol, @qty, @status
+Iterations: 3 | values file: trading/orders/place_order.parameters/01-place-a-market-side-order-for-symbol.csv
+Examples blocks: rows 1-3 (unnamed)
+Not parameters (title-only/unused columns): comment=blue chip, sell from holdings, single share edge case
+Values:
+side | symbol | qty | status
+BUY | AAPL | 10 | FILLED
+SELL | MSFT | 5 | FILLED
+BUY | TSLA | 1 | FILLED"
+,Test Case,Market order is rejected when funds are insufficient,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:27
+Feature: Place equity orders
+Rule: Market orders execute immediately at the best available price
+Scenario: Market order is rejected when funds are insufficient (Scenario)
+Gherkin tags: @trading @orders
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))"
+,Test Case,Market order is rejected when funds are insufficient,2,Ensure the market is open,,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:27
+Feature: Place equity orders
+Rule: Market orders execute immediately at the best available price
+Scenario: Market order is rejected when funds are insufficient (Scenario)
+Gherkin tags: @trading @orders
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))"
+,Test Case,Market order is rejected when funds are insufficient,3,"Ensure the trader account has available funds of ""50000.00"" USD",,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:27
+Feature: Place equity orders
+Rule: Market orders execute immediately at the best available price
+Scenario: Market order is rejected when funds are insufficient (Scenario)
+Gherkin tags: @trading @orders
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))"
+,Test Case,Market order is rejected when funds are insufficient,4,"Place a market ""BUY"" order for 1000 shares of ""AAPL""","The order is rejected with message ""Insufficient funds""
+No order appears in the order book",StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:27
+Feature: Place equity orders
+Rule: Market orders execute immediately at the best available price
+Scenario: Market order is rejected when funds are insufficient (Scenario)
+Gherkin tags: @trading @orders
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))"
+,Test Case,Place a limit order with [order type] validity,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:35
+Feature: Place equity orders
+Rule: Limit orders wait until the price reaches the limit
+Scenario: Place a limit order with <order type> validity (Scenario Outline - parameterized)
+Gherkin tags: @trading @orders @P2
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @qty, @limit_price, @order_type
+Iterations: 2 | values file: trading/orders/place_order.parameters/02-place-a-limit-order-with-order-type-validity.csv
+Examples blocks: rows 1-2 (unnamed)
+Values:
+symbol | qty | limit_price | order_type
+INFY | 20 | 18.50 | DAY
+AAPL | 5 | 150.00 | GTC"
+,Test Case,Place a limit order with [order type] validity,2,Ensure the market is open,,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:35
+Feature: Place equity orders
+Rule: Limit orders wait until the price reaches the limit
+Scenario: Place a limit order with <order type> validity (Scenario Outline - parameterized)
+Gherkin tags: @trading @orders @P2
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @qty, @limit_price, @order_type
+Iterations: 2 | values file: trading/orders/place_order.parameters/02-place-a-limit-order-with-order-type-validity.csv
+Examples blocks: rows 1-2 (unnamed)
+Values:
+symbol | qty | limit_price | order_type
+INFY | 20 | 18.50 | DAY
+AAPL | 5 | 150.00 | GTC"
+,Test Case,Place a limit order with [order type] validity,3,"Enter the order details:
+Symbol = @symbol
+Side = BUY
+Quantity = @qty
+Limit = @limit_price
+Validity = @order_type",,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:35
+Feature: Place equity orders
+Rule: Limit orders wait until the price reaches the limit
+Scenario: Place a limit order with <order type> validity (Scenario Outline - parameterized)
+Gherkin tags: @trading @orders @P2
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @qty, @limit_price, @order_type
+Iterations: 2 | values file: trading/orders/place_order.parameters/02-place-a-limit-order-with-order-type-validity.csv
+Examples blocks: rows 1-2 (unnamed)
+Values:
+symbol | qty | limit_price | order_type
+INFY | 20 | 18.50 | DAY
+AAPL | 5 | 150.00 | GTC"
+,Test Case,Place a limit order with [order type] validity,4,Submit the order,"The order status is ""OPEN""
+The order shows validity ""@order_type""",StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:35
+Feature: Place equity orders
+Rule: Limit orders wait until the price reaches the limit
+Scenario: Place a limit order with <order type> validity (Scenario Outline - parameterized)
+Gherkin tags: @trading @orders @P2
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))
+Parameters: @symbol, @qty, @limit_price, @order_type
+Iterations: 2 | values file: trading/orders/place_order.parameters/02-place-a-limit-order-with-order-type-validity.csv
+Examples blocks: rows 1-2 (unnamed)
+Values:
+symbol | qty | limit_price | order_type
+INFY | 20 | 18.50 | DAY
+AAPL | 5 | 150.00 | GTC"
+,Test Case,Limit order ticket preview,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:51
+Feature: Place equity orders
+Rule: Limit orders wait until the price reaches the limit
+Scenario: Limit order ticket preview (Scenario)
+Gherkin tags: @trading @orders
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))"
+,Test Case,Limit order ticket preview,2,Ensure the market is open,,StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:51
+Feature: Place equity orders
+Rule: Limit orders wait until the price reaches the limit
+Scenario: Limit order ticket preview (Scenario)
+Gherkin tags: @trading @orders
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))"
+,Test Case,Limit order ticket preview,3,Preview a limit order ticket,"The ticket preview shows:
+Order type : LIMIT
+Validity   : DAY
+Fees       : 0.1% (min 1.00 USD)",StockBroker\Regression\trading\orders\place_order,qa.lead@broker.example,Design,trading; orders; place_order,"Source: samples/stock-broker/features/trading/orders/place_order.feature:51
+Feature: Place equity orders
+Rule: Limit orders wait until the price reaches the limit
+Scenario: Limit order ticket preview (Scenario)
+Gherkin tags: @trading @orders
+Context: Traders place buy and sell orders for listed equities during market hours.
+Test type: UI (default (no API evidence))"

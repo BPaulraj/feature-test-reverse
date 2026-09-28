@@ -1,0 +1,58 @@
+# Configuration for the "Gherkin to ADO Test Cases" Copilot agent.
+# Rules: .github/instructions/gherkin-functional-test-cases.instructions.md
+# Paths are relative to the workspace root, or absolute (e.g. another repo on disk). Use forward slashes.
+# Personal values (your ADO project, a local path) can go in gherkin-to-ado.config.local.yml next to this file instead:
+# it is gitignored and any key in it overrides the same key here.
+
+# ADO project name. Every ADO Area Path starts with it. Must match ado.project in ado.properties. (required)
+adoProject: "<<ADO project name>>"
+
+# Optional sub-area(s) placed between the project name and the feature path, e.g. "Regression" or "Automation\\Regression".
+# Leave empty ("") to put the feature paths directly under the project.
+areaRoot: ""
+
+# Base folder. The Area Path is each .feature file's path RELATIVE TO THIS FOLDER (without the .feature extension).
+# This folder's own name is not part of the Area Path. Only .feature files under this folder are converted. (required)
+# Can be absolute: "Source:" lines are then relative to the automation repo root (the folder above with pom.xml).
+featuresRoot: "src/test/resources/features"
+
+# Folder where the generated CSVs and reports are written.
+outputDir: "ado-test-cases"
+
+# State given to each imported test case.
+state: "Design"
+
+# User for the "Assigned To" column (email or display name). The ADO import wizard lists this as a required field.
+assignedTo: ""
+
+# File that stores ADO test case IDs between runs, filled by `ado_testcases.py sync-ids`. Keep it; never delete it.
+idMapFile: "ado-test-cases/_ado-id-map.csv"
+
+# Tag prefix for ADO IDs in feature files, e.g. @TC_12345 (added by `ado_testcases.py tag-features --write`).
+tcTagPrefix: "TC="
+
+# --- API tests (instructions §3b) ---
+# Tags that mark API / UI scenarios (comma-separated, with or without @).
+apiTags: "api"
+uiTags: "ui"
+# Folders under featuresRoot that only hold API features (comma-separated globs), e.g. "api/**, services/**".
+apiPaths: ""
+# Replace tokens, API keys and client secrets with ***MASKED*** before anything is written. Keep this "true".
+maskSecrets: "true"
+# "true" = also write one import file per test type (_all-api-test-cases.csv, _all-ui-..., _all-hybrid-...).
+splitByTestType: "false"
+
+# --- Direct push to ADO (instructions §11; connection details are in ado.properties) ---
+# Optional suite path under the test plan's root suite, e.g. "Automated" or "Automated\\Regression".
+# Empty = the feature folders go directly under the plan's root suite.
+suiteRoot: ""
+
+# --- Test case titles (instructions §4a) ---
+# "verify"   = the agent writes traditional titles: "Verify that <expected result> when <test condition>".
+# "scenario" = the title is the scenario name as written in the feature file.
+titleStyle: "verify"
+
+# --- Human review gate (instructions §12) ---
+# "true" (recommended) = push only uploads test cases a person has Approved in <outputDir>/_review/review-sheet.csv,
+# with a Reviewer name, and whose content has not changed since the approval.
+requireReview: "true"

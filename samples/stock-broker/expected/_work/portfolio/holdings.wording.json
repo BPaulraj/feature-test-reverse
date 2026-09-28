@@ -1,0 +1,115 @@
+{
+  "feature": "samples/stock-broker/features/portfolio/holdings.feature",
+  "howTo": "Fill 'action' and 'expected' for every row (rules: instructions §4). Keep every @parameter, quoted value, table and doc-string text from 'source'/'sourceExpected'. Leave 'expected' empty when 'sourceExpected' is empty. Don't add, remove or reorder rows.",
+  "testCases": [
+    {
+      "key": "portfolio/holdings.feature::Holdings table shows current positions",
+      "scenarioTitle": "Holdings table shows current positions",
+      "title": "Holdings table shows current positions",
+      "testType": "ui",
+      "parameters": [],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "neutral",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "action": "Log in as trader \"TRD1001\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "neutral",
+          "source": "Given the trader holds the following positions:\n| Symbol | Quantity | Avg Price |\n| AAPL | 10 | 145.20 |\n| MSFT | 5 | 310.00 |",
+          "sourceExpected": "",
+          "action": "Ensure the trader holds the following positions:\n| Symbol | Quantity | Avg Price |\n| AAPL | 10 | 145.20 |\n| MSFT | 5 | 310.00 |",
+          "expected": ""
+        },
+        {
+          "step": 3,
+          "stepType": "ui",
+          "source": "When the trader opens the holdings page",
+          "sourceExpected": "Then the holdings table lists 2 positions\nAnd the total market value is shown in \"USD\"",
+          "action": "Open the holdings page",
+          "expected": "The holdings table lists 2 positions\nThe total market value is shown in \"USD\""
+        }
+      ]
+    },
+    {
+      "key": "portfolio/holdings.feature::Unrealised P&L for <symbol>",
+      "scenarioTitle": "Unrealised P&L for [symbol]",
+      "title": "Unrealised P&L for [symbol]",
+      "testType": "ui",
+      "parameters": [
+        "symbol",
+        "quantity",
+        "avg_price",
+        "ltp",
+        "pnl"
+      ],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "neutral",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "action": "Log in as trader \"TRD1001\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "neutral",
+          "source": "Given the trader holds @quantity shares of \"@symbol\" bought at @avg_price",
+          "sourceExpected": "",
+          "action": "Ensure the trader holds @quantity shares of \"@symbol\" bought at @avg_price",
+          "expected": ""
+        },
+        {
+          "step": 3,
+          "stepType": "neutral",
+          "source": "And the last traded price of \"@symbol\" is @ltp",
+          "sourceExpected": "",
+          "action": "Ensure the last traded price of \"@symbol\" is @ltp",
+          "expected": ""
+        },
+        {
+          "step": 4,
+          "stepType": "ui",
+          "source": "When the trader opens the holdings page",
+          "sourceExpected": "Then the unrealised P&L for \"@symbol\" is \"@pnl\"",
+          "action": "Open the holdings page",
+          "expected": "The unrealised P&L for \"@symbol\" is \"@pnl\""
+        }
+      ]
+    },
+    {
+      "key": "portfolio/holdings.feature::Export holdings as <format>",
+      "scenarioTitle": "Export holdings as [format]",
+      "title": "Export holdings as [format]",
+      "testType": "ui",
+      "parameters": [
+        "accountId",
+        "format",
+        "file_name"
+      ],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "neutral",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "action": "Log in as trader \"TRD1001\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "neutral",
+          "source": "When the trader exports holdings for account \"@accountId\" as \"@format\"",
+          "sourceExpected": "Then a \"@format\" file named \"@file_name\" is downloaded",
+          "action": "Export the holdings for account \"@accountId\" as \"@format\"",
+          "expected": "A \"@format\" file named \"@file_name\" is downloaded"
+        }
+      ]
+    }
+  ]
+}

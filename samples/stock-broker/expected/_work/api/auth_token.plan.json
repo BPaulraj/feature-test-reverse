@@ -1,0 +1,165 @@
+{
+  "rel": "api/auth_token.feature",
+  "relNoExt": "api/auth_token",
+  "source": "samples/stock-broker/features/api/auth_token.feature",
+  "areaPath": "StockBroker\\Regression\\api\\auth_token",
+  "flags": [],
+  "testCases": [
+    {
+      "key": "api/auth_token.feature::Token request for partner <partner>",
+      "title": "Token request for partner [partner]",
+      "originalName": "Token request for partner <partner>",
+      "line": 3,
+      "where": "samples/stock-broker/features/api/auth_token.feature:3",
+      "isOutline": true,
+      "areaPath": "StockBroker\\Regression\\api\\auth_token",
+      "tags": [
+        "api",
+        "auth_token"
+      ],
+      "gherkinTags": [],
+      "rule": "",
+      "existingTagId": null,
+      "flags": [
+        "Examples column 'clientSecret' looks like a secret - values masked",
+        "Examples column 'partner' is title-only - not a parameter"
+      ],
+      "testType": "api",
+      "testTypeReason": "folder rule api/**",
+      "scenarioTitle": "Token request for partner [partner]",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "When",
+          "source": "When a POST request is sent to \"/v1/auth/token\" with form data:\nclient_id = @clientId\nclient_secret = @clientSecret\ngrant_type = client_credentials",
+          "sourceExpected": "Then the response status code is @status",
+          "verify": false,
+          "lines": [
+            4,
+            8
+          ],
+          "stepType": "api",
+          "payload": ""
+        }
+      ],
+      "parameters": [
+        "clientId",
+        "clientSecret",
+        "status"
+      ],
+      "placeholderToParam": {
+        "clientId": "clientId",
+        "clientSecret": "clientSecret",
+        "status": "status"
+      },
+      "placeholderUse": {
+        "clientId": [
+          "When:dataTable:action"
+        ],
+        "clientSecret": [
+          "When:dataTable:action"
+        ],
+        "status": [
+          "Then:text:expected"
+        ]
+      },
+      "placeholdersInTitle": [
+        "partner"
+      ],
+      "notParameters": {
+        "partner": [
+          "Acme",
+          "Unknown"
+        ]
+      },
+      "values": [
+        [
+          "acme-partner",
+          "***MASKED***",
+          "200"
+        ],
+        [
+          "nobody",
+          "***MASKED***",
+          "401"
+        ]
+      ],
+      "examplesBlocks": [
+        "rows 1-2 (unnamed)"
+      ],
+      "examplesDetail": [
+        {
+          "name": "",
+          "tags": [],
+          "columns": [
+            "partner",
+            "clientId",
+            "clientSecret",
+            "status"
+          ],
+          "rows": 2
+        }
+      ],
+      "valuesFile": "api/auth_token.parameters/01-token-request-for-partner-partner.csv",
+      "description": "Source: samples/stock-broker/features/api/auth_token.feature:3\nFeature: Partner authentication API\nScenario: Token request for partner <partner> (Scenario Outline - parameterized)\nTest type: API (folder rule api/**)\nManual execution: API steps are sent with an API client (e.g. Postman) against the environment under test.\nParameters: @clientId, @clientSecret, @status\nIterations: 2 | values file: api/auth_token.parameters/01-token-request-for-partner-partner.csv\nExamples blocks: rows 1-2 (unnamed)\nNot parameters (title-only/unused columns): partner=Acme, Unknown\nValues:\nclientId | clientSecret | status\nacme-partner | ***MASKED*** | 200\nnobody | ***MASKED*** | 401",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    },
+    {
+      "key": "api/auth_token.feature::Legacy trade confirmation in XML",
+      "title": "Legacy trade confirmation in XML",
+      "originalName": "Legacy trade confirmation in XML",
+      "line": 15,
+      "where": "samples/stock-broker/features/api/auth_token.feature:15",
+      "isOutline": false,
+      "areaPath": "StockBroker\\Regression\\api\\auth_token",
+      "tags": [
+        "api",
+        "auth_token"
+      ],
+      "gherkinTags": [],
+      "rule": "",
+      "existingTagId": null,
+      "flags": [
+        "Secret-like value masked in step at line 16 (1x)",
+        "Step at line 17 contains XML/HTML markup - ADO steps are HTML; check it shows correctly after the import"
+      ],
+      "testType": "api",
+      "testTypeReason": "folder rule api/**",
+      "scenarioTitle": "Legacy trade confirmation in XML",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the request header \"x-api-key\" is \"***MASKED***\"",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            16
+          ],
+          "stepType": "api",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When a POST request is sent to \"/v1/legacy/confirmations\" with body:\n<confirmation><orderId>ORD-5001</orderId><status>FILLED</status></confirmation>",
+          "sourceExpected": "Then the response status code is 202",
+          "verify": false,
+          "lines": [
+            17,
+            21
+          ],
+          "stepType": "api",
+          "payload": "xml"
+        }
+      ],
+      "description": "Source: samples/stock-broker/features/api/auth_token.feature:15\nFeature: Partner authentication API\nScenario: Legacy trade confirmation in XML (Scenario)\nTest type: API (folder rule api/**)\nManual execution: API steps are sent with an API client (e.g. Postman) against the environment under test.",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    }
+  ],
+  "commentedOut": [],
+  "name": "Partner authentication API"
+}

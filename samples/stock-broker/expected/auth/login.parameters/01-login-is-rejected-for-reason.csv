@@ -1,0 +1,4 @@
+clientId,password,error
+TRD1001,wrong,Invalid client ID or password
+TRD9999,Secure#2024,Invalid client ID or password
+TRD2002,Secure#2024,Account locked. Contact support@broker.example

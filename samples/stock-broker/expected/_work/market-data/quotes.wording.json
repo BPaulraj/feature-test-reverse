@@ -1,0 +1,57 @@
+{
+  "feature": "samples/stock-broker/features/market-data/quotes.feature",
+  "howTo": "Fill 'action' and 'expected' for every row (rules: instructions §4). Keep every @parameter, quoted value, table and doc-string text from 'source'/'sourceExpected'. Leave 'expected' empty when 'sourceExpected' is empty. Don't add, remove or reorder rows.",
+  "testCases": [
+    {
+      "key": "market-data/quotes.feature::Quote endpoint returns the last traded price",
+      "scenarioTitle": "Quote endpoint returns the last traded price",
+      "title": "Quote endpoint returns the last traded price",
+      "testType": "api",
+      "parameters": [],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "api",
+          "source": "When a GET request is sent to \"/v1/quotes/AAPL\"",
+          "sourceExpected": "Then the response status code is 200\nAnd the response body field \"lastPrice\" is a positive number",
+          "action": "Send a GET request to \"/v1/quotes/AAPL\"",
+          "expected": "Response status code is 200\nResponse body field \"lastPrice\" is a positive number"
+        }
+      ]
+    },
+    {
+      "key": "market-data/quotes.feature::Price alert created via API is shown in the web watchlist",
+      "scenarioTitle": "Price alert created via API is shown in the web watchlist",
+      "title": "Price alert created via API is shown in the web watchlist",
+      "testType": "hybrid",
+      "parameters": [],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "neutral",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "action": "Log in as trader \"TRD1001\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "api",
+          "payload": "json",
+          "source": "And a POST request is sent to \"/v1/alerts\" with body:\n{ \"symbol\": \"AAPL\", \"target\": 155.00 }",
+          "sourceExpected": "",
+          "action": "Send a POST request to \"/v1/alerts\" with this body:\n{ \"symbol\": \"AAPL\", \"target\": 155.00 }",
+          "expected": ""
+        },
+        {
+          "step": 3,
+          "stepType": "ui",
+          "source": "When the trader opens the watchlist page",
+          "sourceExpected": "Then the alert for \"AAPL\" at 155.00 is displayed",
+          "action": "Open the watchlist page",
+          "expected": "The alert for \"AAPL\" at 155.00 is displayed"
+        }
+      ]
+    }
+  ]
+}

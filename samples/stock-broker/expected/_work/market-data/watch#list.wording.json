@@ -1,0 +1,120 @@
+{
+  "feature": "samples/stock-broker/features/market-data/watch#list.feature",
+  "howTo": "Fill 'action' and 'expected' for every row (rules: instructions §4). Keep every @parameter, quoted value, table and doc-string text from 'source'/'sourceExpected'. Leave 'expected' empty when 'sourceExpected' is empty. Don't add, remove or reorder rows.",
+  "testCases": [
+    {
+      "key": "market-data/watch#list.feature::Add a symbol to the watchlist",
+      "scenarioTitle": "Add a symbol to the watchlist",
+      "title": "Add a symbol to the watchlist",
+      "testType": "ui",
+      "parameters": [],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "neutral",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "action": "Log in as trader \"TRD1001\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "neutral",
+          "source": "When the trader adds \"AAPL\" to the watchlist",
+          "sourceExpected": "Then \"AAPL\" is shown in the watchlist with its last traded price",
+          "action": "Add \"AAPL\" to the watchlist",
+          "expected": "\"AAPL\" is shown in the watchlist with its last traded price"
+        }
+      ]
+    },
+    {
+      "key": "market-data/watch#list.feature::Add a symbol to the watchlist #2",
+      "scenarioTitle": "Add a symbol to the watchlist",
+      "title": "Add a symbol to the watchlist (2)",
+      "testType": "ui",
+      "parameters": [],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "neutral",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "action": "Log in as trader \"TRD1001\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "neutral",
+          "source": "When the trader adds \"aapl\" in lower case to the watchlist",
+          "sourceExpected": "Then \"AAPL\" is shown in the watchlist with its last traded price",
+          "action": "Add \"aapl\" in lower case to the watchlist",
+          "expected": "\"AAPL\" is shown in the watchlist with its last traded price"
+        }
+      ]
+    },
+    {
+      "key": "market-data/watch#list.feature::Price alert for <symbol>",
+      "scenarioTitle": "Price alert for [symbol]",
+      "title": "Price alert for [symbol]",
+      "testType": "ui",
+      "parameters": [
+        "symbol",
+        "target"
+      ],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "neutral",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "action": "Log in as trader \"TRD1001\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "neutral",
+          "source": "When the trader sets a price alert for \"@symbol\" at @target",
+          "sourceExpected": "",
+          "action": "Set a price alert for \"@symbol\" at @target",
+          "expected": ""
+        },
+        {
+          "step": 3,
+          "stepType": "neutral",
+          "source": "And the price of \"@symbol\" reaches @target",
+          "sourceExpected": "Then a notification \"@symbol reached @target\" is shown",
+          "action": "Wait until the price of \"@symbol\" reaches @target",
+          "expected": "A notification \"@symbol reached @target\" is shown"
+        }
+      ]
+    },
+    {
+      "key": "market-data/watch#list.feature::Watchlist sorting by <column>",
+      "scenarioTitle": "Watchlist sorting by [column]",
+      "title": "Watchlist sorting by [column]",
+      "testType": "ui",
+      "parameters": [
+        "column",
+        "direction"
+      ],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "neutral",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "action": "Log in as trader \"TRD1001\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "neutral",
+          "source": "When the trader sorts the watchlist by \"@column\" in @direction order",
+          "sourceExpected": "Then the watchlist is sorted by \"@column\" @direction",
+          "action": "Sort the watchlist by \"@column\" in @direction order",
+          "expected": "The watchlist is sorted by \"@column\" @direction"
+        }
+      ]
+    }
+  ]
+}

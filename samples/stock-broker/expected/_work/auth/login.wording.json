@@ -1,0 +1,85 @@
+{
+  "feature": "samples/stock-broker/features/auth/login.feature",
+  "howTo": "Fill 'action' and 'expected' for every row (rules: instructions §4). Keep every @parameter, quoted value, table and doc-string text from 'source'/'sourceExpected'. Leave 'expected' empty when 'sourceExpected' is empty. Don't add, remove or reorder rows.",
+  "testCases": [
+    {
+      "key": "auth/login.feature::Successful login with valid credentials",
+      "scenarioTitle": "Successful login with valid credentials",
+      "title": "Successful login with valid credentials",
+      "testType": "ui",
+      "parameters": [],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "ui",
+          "source": "Given the trader is on the StockBroker login page",
+          "sourceExpected": "",
+          "action": "Open the StockBroker login page",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "neutral",
+          "source": "When the trader logs in with client ID \"TRD1001\" and password \"Secure#2024\"",
+          "sourceExpected": "Then the trading dashboard is displayed\nAnd the header shows \"Welcome, TRD1001\"",
+          "action": "Log in with client ID \"TRD1001\" and password \"Secure#2024\"",
+          "expected": "The trading dashboard is displayed\nThe header shows \"Welcome, TRD1001\""
+        }
+      ]
+    },
+    {
+      "key": "auth/login.feature::Login is rejected for <reason>",
+      "scenarioTitle": "Login is rejected for [reason]",
+      "title": "Login is rejected for [reason]",
+      "testType": "ui",
+      "parameters": [
+        "clientId",
+        "password",
+        "error"
+      ],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "ui",
+          "source": "Given the trader is on the StockBroker login page",
+          "sourceExpected": "",
+          "action": "Open the StockBroker login page",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "neutral",
+          "source": "When the trader logs in with client ID \"@clientId\" and password \"@password\"",
+          "sourceExpected": "Then the error message \"@error\" is displayed\nAnd the trader remains on the login page",
+          "action": "Log in with client ID \"@clientId\" and password \"@password\"",
+          "expected": "The error message \"@error\" is displayed\nThe trader remains on the login page"
+        }
+      ]
+    },
+    {
+      "key": "auth/login.feature::Forgot password sends a reset link",
+      "scenarioTitle": "Forgot password sends a reset link",
+      "title": "Forgot password sends a reset link",
+      "testType": "ui",
+      "parameters": [],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "ui",
+          "source": "Given the trader is on the StockBroker login page",
+          "sourceExpected": "",
+          "action": "Open the StockBroker login page",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "neutral",
+          "source": "When the trader requests a password reset for \"trader.one@broker.example\"",
+          "sourceExpected": "Then a reset link is sent to \"trader.one@broker.example\"",
+          "action": "Request a password reset for \"trader.one@broker.example\"",
+          "expected": "A reset link is sent to \"trader.one@broker.example\""
+        }
+      ]
+    }
+  ]
+}

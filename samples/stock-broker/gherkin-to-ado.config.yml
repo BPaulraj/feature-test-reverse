@@ -1,0 +1,15 @@
+# Config for the stock broker sample (golden-file test of the Gherkin to ADO agent).
+# Use it with:  python .github/scripts/ado_testcases.py --config samples/stock-broker/gherkin-to-ado.config.yml <command>
+adoProject: "StockBroker"
+areaRoot: "Regression"
+featuresRoot: "samples/stock-broker/features"
+outputDir: "samples/stock-broker/actual"
+state: "Design"
+assignedTo: "qa.lead@broker.example"
+idMapFile: "samples/stock-broker/ado-id-map.csv"
+tcTagPrefix: "TC_"
+apiTags: "api"
+uiTags: "ui"
+apiPaths: "api/**"
+maskSecrets: "true"
+splitByTestType: "true"

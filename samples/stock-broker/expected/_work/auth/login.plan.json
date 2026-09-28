@@ -1,0 +1,266 @@
+{
+  "rel": "auth/login.feature",
+  "relNoExt": "auth/login",
+  "source": "samples/stock-broker/features/auth/login.feature",
+  "areaPath": "StockBroker\\Regression\\auth\\login",
+  "flags": [],
+  "testCases": [
+    {
+      "key": "auth/login.feature::Successful login with valid credentials",
+      "title": "Successful login with valid credentials",
+      "originalName": "Successful login with valid credentials",
+      "line": 10,
+      "where": "samples/stock-broker/features/auth/login.feature:10",
+      "isOutline": false,
+      "areaPath": "StockBroker\\Regression\\auth\\login",
+      "tags": [
+        "auth",
+        "login"
+      ],
+      "gherkinTags": [
+        "@auth",
+        "@P1",
+        "@smoke"
+      ],
+      "rule": "",
+      "existingTagId": null,
+      "flags": [],
+      "testType": "ui",
+      "testTypeReason": "default (no API evidence)",
+      "scenarioTitle": "Successful login with valid credentials",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is on the StockBroker login page",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            7
+          ],
+          "stepType": "ui",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When the trader logs in with client ID \"TRD1001\" and password \"Secure#2024\"",
+          "sourceExpected": "Then the trading dashboard is displayed\nAnd the header shows \"Welcome, TRD1001\"",
+          "verify": false,
+          "lines": [
+            11,
+            12,
+            13
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        }
+      ],
+      "description": "Source: samples/stock-broker/features/auth/login.feature:10\nFeature: Trader login\nScenario: Successful login with valid credentials (Scenario)\nGherkin tags: @auth @P1 @smoke\nContext: Traders sign in to the StockBroker web platform with their client ID and password. Accounts are locked after 3 failed attempts.\nTest type: UI (default (no API evidence))",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    },
+    {
+      "key": "auth/login.feature::Login is rejected for <reason>",
+      "title": "Login is rejected for [reason]",
+      "originalName": "Login is rejected for <reason>",
+      "line": 15,
+      "where": "samples/stock-broker/features/auth/login.feature:15",
+      "isOutline": true,
+      "areaPath": "StockBroker\\Regression\\auth\\login",
+      "tags": [
+        "auth",
+        "login"
+      ],
+      "gherkinTags": [
+        "@auth",
+        "@P1",
+        "@negative",
+        "@security"
+      ],
+      "rule": "",
+      "existingTagId": null,
+      "flags": [
+        "Examples blocks have different tags - see Description for which rows came from which block",
+        "Password-like Examples column 'password' is copied to ADO (not masked)",
+        "Examples column 'reason' is title-only - not a parameter"
+      ],
+      "testType": "ui",
+      "testTypeReason": "default (no API evidence)",
+      "scenarioTitle": "Login is rejected for [reason]",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is on the StockBroker login page",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            7
+          ],
+          "stepType": "ui",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When the trader logs in with client ID \"@clientId\" and password \"@password\"",
+          "sourceExpected": "Then the error message \"@error\" is displayed\nAnd the trader remains on the login page",
+          "verify": false,
+          "lines": [
+            16,
+            17,
+            18
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        }
+      ],
+      "parameters": [
+        "clientId",
+        "password",
+        "error"
+      ],
+      "placeholderToParam": {
+        "clientId": "clientId",
+        "password": "password",
+        "error": "error"
+      },
+      "placeholderUse": {
+        "clientId": [
+          "When:text:action"
+        ],
+        "password": [
+          "When:text:action"
+        ],
+        "error": [
+          "Then:text:expected"
+        ]
+      },
+      "placeholdersInTitle": [
+        "reason"
+      ],
+      "notParameters": {
+        "reason": [
+          "wrong password",
+          "unknown client",
+          "locked account"
+        ]
+      },
+      "values": [
+        [
+          "TRD1001",
+          "wrong",
+          "Invalid client ID or password"
+        ],
+        [
+          "TRD9999",
+          "Secure#2024",
+          "Invalid client ID or password"
+        ],
+        [
+          "TRD2002",
+          "Secure#2024",
+          "Account locked. Contact support@broker.example"
+        ]
+      ],
+      "examplesBlocks": [
+        "rows 1-2 \"invalid credentials\" @negative",
+        "row 3 \"locked account\" @negative @security"
+      ],
+      "examplesDetail": [
+        {
+          "name": "invalid credentials",
+          "tags": [
+            "@negative"
+          ],
+          "columns": [
+            "reason",
+            "clientId",
+            "password",
+            "error"
+          ],
+          "rows": 2
+        },
+        {
+          "name": "locked account",
+          "tags": [
+            "@negative",
+            "@security"
+          ],
+          "columns": [
+            "reason",
+            "clientId",
+            "password",
+            "error"
+          ],
+          "rows": 1
+        }
+      ],
+      "valuesFile": "auth/login.parameters/01-login-is-rejected-for-reason.csv",
+      "description": "Source: samples/stock-broker/features/auth/login.feature:15\nFeature: Trader login\nScenario: Login is rejected for <reason> (Scenario Outline - parameterized)\nGherkin tags: @auth @P1 @negative @security\nContext: Traders sign in to the StockBroker web platform with their client ID and password. Accounts are locked after 3 failed attempts.\nTest type: UI (default (no API evidence))\nParameters: @clientId, @password, @error\nIterations: 3 | values file: auth/login.parameters/01-login-is-rejected-for-reason.csv\nExamples blocks: rows 1-2 \"invalid credentials\" @negative; row 3 \"locked account\" @negative @security\nNot parameters (title-only/unused columns): reason=wrong password, unknown client, locked account\nValues:\nclientId | password | error\nTRD1001 | wrong | Invalid client ID or password\nTRD9999 | Secure#2024 | Invalid client ID or password\nTRD2002 | Secure#2024 | Account locked. Contact support@broker.example",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    },
+    {
+      "key": "auth/login.feature::Forgot password sends a reset link",
+      "title": "Forgot password sends a reset link",
+      "originalName": "Forgot password sends a reset link",
+      "line": 31,
+      "where": "samples/stock-broker/features/auth/login.feature:31",
+      "isOutline": false,
+      "areaPath": "StockBroker\\Regression\\auth\\login",
+      "tags": [
+        "auth",
+        "login"
+      ],
+      "gherkinTags": [
+        "@auth",
+        "@P1"
+      ],
+      "rule": "",
+      "existingTagId": null,
+      "flags": [
+        "Literal '@broker' in step at line 32 - ADO will treat it as a parameter",
+        "Literal '@broker' in step at line 33 - ADO will treat it as a parameter"
+      ],
+      "testType": "ui",
+      "testTypeReason": "default (no API evidence)",
+      "scenarioTitle": "Forgot password sends a reset link",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is on the StockBroker login page",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            7
+          ],
+          "stepType": "ui",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When the trader requests a password reset for \"trader.one@broker.example\"",
+          "sourceExpected": "Then a reset link is sent to \"trader.one@broker.example\"",
+          "verify": false,
+          "lines": [
+            32,
+            33
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        }
+      ],
+      "description": "Source: samples/stock-broker/features/auth/login.feature:31\nFeature: Trader login\nScenario: Forgot password sends a reset link (Scenario)\nGherkin tags: @auth @P1\nContext: Traders sign in to the StockBroker web platform with their client ID and password. Accounts are locked after 3 failed attempts.\nTest type: UI (default (no API evidence))",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    }
+  ],
+  "commentedOut": [
+    "samples/stock-broker/features/auth/login.feature:35: # Scenario: Login with biometrics"
+  ],
+  "name": "Trader login"
+}

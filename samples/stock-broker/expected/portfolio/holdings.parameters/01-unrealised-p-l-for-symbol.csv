@@ -1,0 +1,4 @@
+symbol,quantity,avg_price,ltp,pnl
+AAPL,10,145.20,150.20,+50.00
+MSFT,5,310.00,300.00,-50.00
+INFY,20,18.50,18.50,0.00

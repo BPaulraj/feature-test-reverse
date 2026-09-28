@@ -1,0 +1,4 @@
+side,symbol,qty,status
+BUY,AAPL,10,FILLED
+SELL,MSFT,5,FILLED
+BUY,TSLA,1,FILLED

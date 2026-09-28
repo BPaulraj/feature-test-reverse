@@ -1,0 +1,456 @@
+{
+  "rel": "trading/orders/place_order.feature",
+  "relNoExt": "trading/orders/place_order",
+  "source": "samples/stock-broker/features/trading/orders/place_order.feature",
+  "areaPath": "StockBroker\\Regression\\trading\\orders\\place_order",
+  "flags": [],
+  "testCases": [
+    {
+      "key": "trading/orders/place_order.feature::Market orders execute immediately at the best available price > Place a market <side> order for <symbol>",
+      "title": "Place a market [side] order for [symbol]",
+      "originalName": "Place a market <side> order for <symbol>",
+      "line": 15,
+      "where": "samples/stock-broker/features/trading/orders/place_order.feature:15",
+      "isOutline": true,
+      "areaPath": "StockBroker\\Regression\\trading\\orders\\place_order",
+      "tags": [
+        "trading",
+        "orders",
+        "place_order"
+      ],
+      "gherkinTags": [
+        "@trading",
+        "@orders",
+        "@smoke",
+        "@P1"
+      ],
+      "rule": "Market orders execute immediately at the best available price",
+      "existingTagId": null,
+      "flags": [
+        "<qty> was directly followed by text - a space was inserted after @qty",
+        "Examples column 'comment' is unused - not a parameter"
+      ],
+      "testType": "ui",
+      "testTypeReason": "default (no API evidence)",
+      "scenarioTitle": "Place a market [side] order for [symbol]",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            6
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "Given",
+          "source": "And the market is open",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            7
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "Given",
+          "source": "Given the trader has available funds of \"50000.00\" USD",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            12
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When the trader places a market \"@side\" order for @qty shares of \"@symbol\"",
+          "sourceExpected": "Then the order status is \"@status\"\nAnd the confirmation shows \"@qty x @symbol\"\nAnd the order appears in the order book",
+          "verify": false,
+          "lines": [
+            16,
+            17,
+            18,
+            19
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        }
+      ],
+      "parameters": [
+        "side",
+        "symbol",
+        "qty",
+        "status"
+      ],
+      "placeholderToParam": {
+        "side": "side",
+        "symbol": "symbol",
+        "qty": "qty",
+        "status": "status"
+      },
+      "placeholderUse": {
+        "side": [
+          "When:text:action"
+        ],
+        "qty": [
+          "And:text:expected",
+          "When:text:action"
+        ],
+        "symbol": [
+          "And:text:expected",
+          "When:text:action"
+        ],
+        "status": [
+          "Then:text:expected"
+        ]
+      },
+      "placeholdersInTitle": [
+        "side",
+        "symbol"
+      ],
+      "notParameters": {
+        "comment": [
+          "blue chip",
+          "sell from holdings",
+          "single share edge case"
+        ]
+      },
+      "values": [
+        [
+          "BUY",
+          "AAPL",
+          "10",
+          "FILLED"
+        ],
+        [
+          "SELL",
+          "MSFT",
+          "5",
+          "FILLED"
+        ],
+        [
+          "BUY",
+          "TSLA",
+          "1",
+          "FILLED"
+        ]
+      ],
+      "examplesBlocks": [
+        "rows 1-3 (unnamed)"
+      ],
+      "examplesDetail": [
+        {
+          "name": "",
+          "tags": [],
+          "columns": [
+            "side",
+            "symbol",
+            "qty",
+            "status",
+            "comment"
+          ],
+          "rows": 3
+        }
+      ],
+      "valuesFile": "trading/orders/place_order.parameters/01-place-a-market-side-order-for-symbol.csv",
+      "description": "Source: samples/stock-broker/features/trading/orders/place_order.feature:15\nFeature: Place equity orders\nRule: Market orders execute immediately at the best available price\nScenario: Place a market <side> order for <symbol> (Scenario Outline - parameterized)\nGherkin tags: @trading @orders @smoke @P1\nContext: Traders place buy and sell orders for listed equities during market hours.\nTest type: UI (default (no API evidence))\nParameters: @side, @symbol, @qty, @status\nIterations: 3 | values file: trading/orders/place_order.parameters/01-place-a-market-side-order-for-symbol.csv\nExamples blocks: rows 1-3 (unnamed)\nNot parameters (title-only/unused columns): comment=blue chip, sell from holdings, single share edge case\nValues:\nside | symbol | qty | status\nBUY | AAPL | 10 | FILLED\nSELL | MSFT | 5 | FILLED\nBUY | TSLA | 1 | FILLED",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    },
+    {
+      "key": "trading/orders/place_order.feature::Market orders execute immediately at the best available price > Market order is rejected when funds are insufficient",
+      "title": "Market order is rejected when funds are insufficient",
+      "originalName": "Market order is rejected when funds are insufficient",
+      "line": 27,
+      "where": "samples/stock-broker/features/trading/orders/place_order.feature:27",
+      "isOutline": false,
+      "areaPath": "StockBroker\\Regression\\trading\\orders\\place_order",
+      "tags": [
+        "trading",
+        "orders",
+        "place_order"
+      ],
+      "gherkinTags": [
+        "@trading",
+        "@orders"
+      ],
+      "rule": "Market orders execute immediately at the best available price",
+      "existingTagId": null,
+      "flags": [],
+      "testType": "ui",
+      "testTypeReason": "default (no API evidence)",
+      "scenarioTitle": "Market order is rejected when funds are insufficient",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            6
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "Given",
+          "source": "And the market is open",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            7
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "Given",
+          "source": "Given the trader has available funds of \"50000.00\" USD",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            12
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When the trader places a market \"BUY\" order for 1000 shares of \"AAPL\"",
+          "sourceExpected": "Then the order is rejected with message \"Insufficient funds\"\nBut no order appears in the order book",
+          "verify": false,
+          "lines": [
+            28,
+            29,
+            30
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        }
+      ],
+      "description": "Source: samples/stock-broker/features/trading/orders/place_order.feature:27\nFeature: Place equity orders\nRule: Market orders execute immediately at the best available price\nScenario: Market order is rejected when funds are insufficient (Scenario)\nGherkin tags: @trading @orders\nContext: Traders place buy and sell orders for listed equities during market hours.\nTest type: UI (default (no API evidence))",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    },
+    {
+      "key": "trading/orders/place_order.feature::Limit orders wait until the price reaches the limit > Place a limit order with <order type> validity",
+      "title": "Place a limit order with [order type] validity",
+      "originalName": "Place a limit order with <order type> validity",
+      "line": 35,
+      "where": "samples/stock-broker/features/trading/orders/place_order.feature:35",
+      "isOutline": true,
+      "areaPath": "StockBroker\\Regression\\trading\\orders\\place_order",
+      "tags": [
+        "trading",
+        "orders",
+        "place_order"
+      ],
+      "gherkinTags": [
+        "@trading",
+        "@orders",
+        "@P2"
+      ],
+      "rule": "Limit orders wait until the price reaches the limit",
+      "existingTagId": null,
+      "flags": [
+        "Parameter <limit price> renamed to @limit_price",
+        "Parameter <order type> renamed to @order_type"
+      ],
+      "testType": "ui",
+      "testTypeReason": "default (no API evidence)",
+      "scenarioTitle": "Place a limit order with [order type] validity",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            6
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "Given",
+          "source": "And the market is open",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            7
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When the trader enters the order details:\nSymbol = @symbol\nSide = BUY\nQuantity = @qty\nLimit = @limit_price\nValidity = @order_type",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            36
+          ],
+          "stepType": "ui",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "And the trader submits the order",
+          "sourceExpected": "Then the order status is \"OPEN\"\nAnd the order shows validity \"@order_type\"",
+          "verify": false,
+          "lines": [
+            42,
+            43,
+            44
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        }
+      ],
+      "parameters": [
+        "symbol",
+        "qty",
+        "limit_price",
+        "order_type"
+      ],
+      "placeholderToParam": {
+        "symbol": "symbol",
+        "qty": "qty",
+        "limit price": "limit_price",
+        "order type": "order_type"
+      },
+      "placeholderUse": {
+        "symbol": [
+          "When:dataTable:action"
+        ],
+        "qty": [
+          "When:dataTable:action"
+        ],
+        "limit price": [
+          "When:dataTable:action"
+        ],
+        "order type": [
+          "And:text:expected",
+          "When:dataTable:action"
+        ]
+      },
+      "placeholdersInTitle": [
+        "order type"
+      ],
+      "notParameters": {},
+      "values": [
+        [
+          "INFY",
+          "20",
+          "18.50",
+          "DAY"
+        ],
+        [
+          "AAPL",
+          "5",
+          "150.00",
+          "GTC"
+        ]
+      ],
+      "examplesBlocks": [
+        "rows 1-2 (unnamed)"
+      ],
+      "examplesDetail": [
+        {
+          "name": "",
+          "tags": [],
+          "columns": [
+            "symbol",
+            "qty",
+            "limit price",
+            "order type"
+          ],
+          "rows": 2
+        }
+      ],
+      "valuesFile": "trading/orders/place_order.parameters/02-place-a-limit-order-with-order-type-validity.csv",
+      "description": "Source: samples/stock-broker/features/trading/orders/place_order.feature:35\nFeature: Place equity orders\nRule: Limit orders wait until the price reaches the limit\nScenario: Place a limit order with <order type> validity (Scenario Outline - parameterized)\nGherkin tags: @trading @orders @P2\nContext: Traders place buy and sell orders for listed equities during market hours.\nTest type: UI (default (no API evidence))\nParameters: @symbol, @qty, @limit_price, @order_type\nIterations: 2 | values file: trading/orders/place_order.parameters/02-place-a-limit-order-with-order-type-validity.csv\nExamples blocks: rows 1-2 (unnamed)\nValues:\nsymbol | qty | limit_price | order_type\nINFY | 20 | 18.50 | DAY\nAAPL | 5 | 150.00 | GTC",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    },
+    {
+      "key": "trading/orders/place_order.feature::Limit orders wait until the price reaches the limit > Limit order ticket preview",
+      "title": "Limit order ticket preview",
+      "originalName": "Limit order ticket preview",
+      "line": 51,
+      "where": "samples/stock-broker/features/trading/orders/place_order.feature:51",
+      "isOutline": false,
+      "areaPath": "StockBroker\\Regression\\trading\\orders\\place_order",
+      "tags": [
+        "trading",
+        "orders",
+        "place_order"
+      ],
+      "gherkinTags": [
+        "@trading",
+        "@orders"
+      ],
+      "rule": "Limit orders wait until the price reaches the limit",
+      "existingTagId": null,
+      "flags": [],
+      "testType": "ui",
+      "testTypeReason": "default (no API evidence)",
+      "scenarioTitle": "Limit order ticket preview",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            6
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "Given",
+          "source": "And the market is open",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            7
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When the trader previews a limit order ticket",
+          "sourceExpected": "Then the ticket preview shows:\nOrder type : LIMIT\nValidity   : DAY\nFees       : 0.1% (min 1.00 USD)",
+          "verify": false,
+          "lines": [
+            52,
+            53
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        }
+      ],
+      "description": "Source: samples/stock-broker/features/trading/orders/place_order.feature:51\nFeature: Place equity orders\nRule: Limit orders wait until the price reaches the limit\nScenario: Limit order ticket preview (Scenario)\nGherkin tags: @trading @orders\nContext: Traders place buy and sell orders for listed equities during market hours.\nTest type: UI (default (no API evidence))",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    }
+  ],
+  "commentedOut": [],
+  "name": "Place equity orders"
+}

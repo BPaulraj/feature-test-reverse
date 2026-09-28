@@ -1,0 +1,23 @@
+ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area Path,Assigned To,State,Tags,Description
+,Test Case,Quote endpoint returns the last traded price,1,"Send a GET request to ""/v1/quotes/AAPL""","Response status code is 200
+Response body field ""lastPrice"" is a positive number",StockBroker\Regression\market-data\quotes,qa.lead@broker.example,Design,market-data; quotes,"Source: samples/stock-broker/features/market-data/quotes.feature:3
+Feature: Market quotes
+Scenario: Quote endpoint returns the last traded price (Scenario)
+Test type: API (detected from steps: 3 API)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Price alert created via API is shown in the web watchlist,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\market-data\quotes,qa.lead@broker.example,Design,market-data; quotes,"Source: samples/stock-broker/features/market-data/quotes.feature:8
+Feature: Market quotes
+Scenario: Price alert created via API is shown in the web watchlist (Scenario)
+Test type: Hybrid (API + UI) (detected from steps: 1 API, 2 UI)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Price alert created via API is shown in the web watchlist,2,"Send a POST request to ""/v1/alerts"" with this body:
+{ ""symbol"": ""AAPL"", ""target"": 155.00 }",,StockBroker\Regression\market-data\quotes,qa.lead@broker.example,Design,market-data; quotes,"Source: samples/stock-broker/features/market-data/quotes.feature:8
+Feature: Market quotes
+Scenario: Price alert created via API is shown in the web watchlist (Scenario)
+Test type: Hybrid (API + UI) (detected from steps: 1 API, 2 UI)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Price alert created via API is shown in the web watchlist,3,Open the watchlist page,"The alert for ""AAPL"" at 155.00 is displayed",StockBroker\Regression\market-data\quotes,qa.lead@broker.example,Design,market-data; quotes,"Source: samples/stock-broker/features/market-data/quotes.feature:8
+Feature: Market quotes
+Scenario: Price alert created via API is shown in the web watchlist (Scenario)
+Test type: Hybrid (API + UI) (detected from steps: 1 API, 2 UI)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."

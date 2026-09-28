@@ -1,0 +1,136 @@
+{
+  "feature": "samples/stock-broker/features/api/orders_api.feature",
+  "howTo": "Fill 'action' and 'expected' for every row (rules: instructions §4). Keep every @parameter, quoted value, table and doc-string text from 'source'/'sourceExpected'. Leave 'expected' empty when 'sourceExpected' is empty. Don't add, remove or reorder rows.",
+  "testCases": [
+    {
+      "key": "api/orders_api.feature::Create a market order",
+      "scenarioTitle": "Create a market order",
+      "title": "Create a market order",
+      "testType": "api",
+      "parameters": [],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "api",
+          "source": "Given the API base URL is \"https://api.stockbroker.test\"",
+          "sourceExpected": "",
+          "action": "Set the API base URL to \"https://api.stockbroker.test\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "api",
+          "source": "And the request header \"Authorization\" is \"Bearer ***MASKED***\"",
+          "sourceExpected": "",
+          "action": "Set the request header \"Authorization\" to \"Bearer ***MASKED***\"",
+          "expected": ""
+        },
+        {
+          "step": 3,
+          "stepType": "api",
+          "source": "And the request header \"Content-Type\" is \"application/json\"",
+          "sourceExpected": "",
+          "action": "Set the request header \"Content-Type\" to \"application/json\"",
+          "expected": ""
+        },
+        {
+          "step": 4,
+          "stepType": "api",
+          "payload": "json",
+          "source": "When a POST request is sent to \"/v1/orders\" with body:\n{\n  \"clientId\": \"TRD1001\",\n  \"symbol\": \"AAPL\",\n  \"side\": \"BUY\",\n  \"type\": \"MARKET\",\n  \"quantity\": 10\n}",
+          "sourceExpected": "Then the response status code is 201\nAnd the response body field \"status\" is \"FILLED\"\nAnd the response matches the schema \"schemas/order-response.json\"",
+          "action": "Send a POST request to \"/v1/orders\" with this body:\n{\n  \"clientId\": \"TRD1001\",\n  \"symbol\": \"AAPL\",\n  \"side\": \"BUY\",\n  \"type\": \"MARKET\",\n  \"quantity\": 10\n}",
+          "expected": "Response status code is 201\nResponse body field \"status\" is \"FILLED\"\nResponse matches the schema \"schemas/order-response.json\""
+        }
+      ]
+    },
+    {
+      "key": "api/orders_api.feature::Order validation returns <statusCode> for <case>",
+      "scenarioTitle": "Order validation returns [statusCode] for [case]",
+      "title": "Order validation returns [statusCode] for [case]",
+      "testType": "api",
+      "parameters": [
+        "symbol",
+        "qty",
+        "statusCode",
+        "errorCode"
+      ],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "api",
+          "source": "Given the API base URL is \"https://api.stockbroker.test\"",
+          "sourceExpected": "",
+          "action": "Set the API base URL to \"https://api.stockbroker.test\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "api",
+          "source": "And the request header \"Authorization\" is \"Bearer ***MASKED***\"",
+          "sourceExpected": "",
+          "action": "Set the request header \"Authorization\" to \"Bearer ***MASKED***\"",
+          "expected": ""
+        },
+        {
+          "step": 3,
+          "stepType": "api",
+          "source": "And the request header \"Content-Type\" is \"application/json\"",
+          "sourceExpected": "",
+          "action": "Set the request header \"Content-Type\" to \"application/json\"",
+          "expected": ""
+        },
+        {
+          "step": 4,
+          "stepType": "api",
+          "payload": "json",
+          "source": "When a POST request is sent to \"/v1/orders\" with body:\n{ \"clientId\": \"TRD1001\", \"symbol\": \"@symbol\", \"side\": \"BUY\", \"type\": \"MARKET\", \"quantity\": @qty }",
+          "sourceExpected": "Then the response status code is @statusCode\nAnd the response body field \"error.code\" is \"@errorCode\"",
+          "action": "Send a POST request to \"/v1/orders\" with this body:\n{ \"clientId\": \"TRD1001\", \"symbol\": \"@symbol\", \"side\": \"BUY\", \"type\": \"MARKET\", \"quantity\": @qty }",
+          "expected": "Response status code is @statusCode\nResponse body field \"error.code\" is \"@errorCode\""
+        }
+      ]
+    },
+    {
+      "key": "api/orders_api.feature::Get order by ID",
+      "scenarioTitle": "Get order by ID",
+      "title": "Get order by ID",
+      "testType": "api",
+      "parameters": [],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "api",
+          "source": "Given the API base URL is \"https://api.stockbroker.test\"",
+          "sourceExpected": "",
+          "action": "Set the API base URL to \"https://api.stockbroker.test\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "api",
+          "source": "And the request header \"Authorization\" is \"Bearer ***MASKED***\"",
+          "sourceExpected": "",
+          "action": "Set the request header \"Authorization\" to \"Bearer ***MASKED***\"",
+          "expected": ""
+        },
+        {
+          "step": 3,
+          "stepType": "api",
+          "source": "And the request header \"Content-Type\" is \"application/json\"",
+          "sourceExpected": "",
+          "action": "Set the request header \"Content-Type\" to \"application/json\"",
+          "expected": ""
+        },
+        {
+          "step": 4,
+          "stepType": "api",
+          "source": "When a GET request is sent to \"/v1/orders/ORD-5001\" with query parameters:\ninclude = fills",
+          "sourceExpected": "Then the response status code is 200\nAnd the response body contains:\nfield = value\norderId = ORD-5001\nstatus = OPEN\nAnd the response time is below 500 ms",
+          "action": "Send a GET request to \"/v1/orders/ORD-5001\" with query parameters:\ninclude = fills",
+          "expected": "Response status code is 200\nResponse body contains:\nfield = value\norderId = ORD-5001\nstatus = OPEN\nResponse time is below 500 ms"
+        }
+      ]
+    }
+  ]
+}

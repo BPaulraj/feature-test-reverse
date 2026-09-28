@@ -1,0 +1,7 @@
+ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area Path,Assigned To,State
+51001,Test Case,Successful login with valid credentials,1,Open the StockBroker login page,,StockBroker\Regression\auth\login,qa.lead@broker.example,Ready
+51001,Test Case,Successful login with valid credentials,2,"Log in with client ID ""TRD1001"" and password ""Secure#2024""","The trading dashboard is displayed",StockBroker\Regression\auth\login,qa.lead@broker.example,Ready
+51002,Test Case,Login is rejected for [reason],1,Open the StockBroker login page,,StockBroker\Regression\auth\login,qa.lead@broker.example,Design
+,,,2,"Log in with client ID ""@clientId"" and password ""@password""","The error message ""@error"" is displayed",,,
+51003,Test Case,Place a market [side] order for [symbol],1,"Log in as trader ""TRD1001""",,StockBroker\Regression\trading\orders\place_order,priya.n@broker.example,Design
+51099,Test Case,Login with biometrics,1,Log in with fingerprint,The trading dashboard is displayed,StockBroker\Regression\auth\login,qa.lead@broker.example,Design

@@ -1,0 +1,116 @@
+{
+  "rel": "market-data/quotes.feature",
+  "relNoExt": "market-data/quotes",
+  "source": "samples/stock-broker/features/market-data/quotes.feature",
+  "areaPath": "StockBroker\\Regression\\market-data\\quotes",
+  "flags": [],
+  "testCases": [
+    {
+      "key": "market-data/quotes.feature::Quote endpoint returns the last traded price",
+      "title": "Quote endpoint returns the last traded price",
+      "originalName": "Quote endpoint returns the last traded price",
+      "line": 3,
+      "where": "samples/stock-broker/features/market-data/quotes.feature:3",
+      "isOutline": false,
+      "areaPath": "StockBroker\\Regression\\market-data\\quotes",
+      "tags": [
+        "market-data",
+        "quotes"
+      ],
+      "gherkinTags": [],
+      "rule": "",
+      "existingTagId": null,
+      "flags": [
+        "Detected as API from 3 step(s) without an API tag or folder rule - check the test type"
+      ],
+      "testType": "api",
+      "testTypeReason": "detected from steps: 3 API",
+      "scenarioTitle": "Quote endpoint returns the last traded price",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "When",
+          "source": "When a GET request is sent to \"/v1/quotes/AAPL\"",
+          "sourceExpected": "Then the response status code is 200\nAnd the response body field \"lastPrice\" is a positive number",
+          "verify": false,
+          "lines": [
+            4,
+            5,
+            6
+          ],
+          "stepType": "api",
+          "payload": ""
+        }
+      ],
+      "description": "Source: samples/stock-broker/features/market-data/quotes.feature:3\nFeature: Market quotes\nScenario: Quote endpoint returns the last traded price (Scenario)\nTest type: API (detected from steps: 3 API)\nManual execution: API steps are sent with an API client (e.g. Postman) against the environment under test.",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    },
+    {
+      "key": "market-data/quotes.feature::Price alert created via API is shown in the web watchlist",
+      "title": "Price alert created via API is shown in the web watchlist",
+      "originalName": "Price alert created via API is shown in the web watchlist",
+      "line": 8,
+      "where": "samples/stock-broker/features/market-data/quotes.feature:8",
+      "isOutline": false,
+      "areaPath": "StockBroker\\Regression\\market-data\\quotes",
+      "tags": [
+        "market-data",
+        "quotes"
+      ],
+      "gherkinTags": [],
+      "rule": "",
+      "existingTagId": null,
+      "flags": [
+        "Hybrid: 1 API step(s) and 2 UI step(s) - check the test type"
+      ],
+      "testType": "hybrid",
+      "testTypeReason": "detected from steps: 1 API, 2 UI",
+      "scenarioTitle": "Price alert created via API is shown in the web watchlist",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            9
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "Given",
+          "source": "And a POST request is sent to \"/v1/alerts\" with body:\n{ \"symbol\": \"AAPL\", \"target\": 155.00 }",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            10
+          ],
+          "stepType": "api",
+          "payload": "json"
+        },
+        {
+          "kind": "When",
+          "source": "When the trader opens the watchlist page",
+          "sourceExpected": "Then the alert for \"AAPL\" at 155.00 is displayed",
+          "verify": false,
+          "lines": [
+            14,
+            15
+          ],
+          "stepType": "ui",
+          "payload": ""
+        }
+      ],
+      "description": "Source: samples/stock-broker/features/market-data/quotes.feature:8\nFeature: Market quotes\nScenario: Price alert created via API is shown in the web watchlist (Scenario)\nTest type: Hybrid (API + UI) (detected from steps: 1 API, 2 UI)\nManual execution: API steps are sent with an API client (e.g. Postman) against the environment under test.",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    }
+  ],
+  "commentedOut": [],
+  "name": "Market quotes"
+}

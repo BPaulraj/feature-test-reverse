@@ -1,0 +1,28 @@
+ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area Path,Assigned To,State,Tags,Description
+,Test Case,Token request for partner [partner],1,"Send a POST request to ""/v1/auth/token"" with form data:
+client_id = @clientId
+client_secret = @clientSecret
+grant_type = client_credentials",Response status code is @status,StockBroker\Regression\api\auth_token,qa.lead@broker.example,Design,api; auth_token,"Source: samples/stock-broker/features/api/auth_token.feature:3
+Feature: Partner authentication API
+Scenario: Token request for partner <partner> (Scenario Outline - parameterized)
+Test type: API (folder rule api/**)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test.
+Parameters: @clientId, @clientSecret, @status
+Iterations: 2 | values file: api/auth_token.parameters/01-token-request-for-partner-partner.csv
+Examples blocks: rows 1-2 (unnamed)
+Not parameters (title-only/unused columns): partner=Acme, Unknown
+Values:
+clientId | clientSecret | status
+acme-partner | ***MASKED*** | 200
+nobody | ***MASKED*** | 401"
+,Test Case,Legacy trade confirmation in XML,1,"Set the request header ""x-api-key"" to ""***MASKED***""",,StockBroker\Regression\api\auth_token,qa.lead@broker.example,Design,api; auth_token,"Source: samples/stock-broker/features/api/auth_token.feature:15
+Feature: Partner authentication API
+Scenario: Legacy trade confirmation in XML (Scenario)
+Test type: API (folder rule api/**)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Legacy trade confirmation in XML,2,"Send a POST request to ""/v1/legacy/confirmations"" with this XML body:
+<confirmation><orderId>ORD-5001</orderId><status>FILLED</status></confirmation>",Response status code is 202,StockBroker\Regression\api\auth_token,qa.lead@broker.example,Design,api; auth_token,"Source: samples/stock-broker/features/api/auth_token.feature:15
+Feature: Partner authentication API
+Scenario: Legacy trade confirmation in XML (Scenario)
+Test type: API (folder rule api/**)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."

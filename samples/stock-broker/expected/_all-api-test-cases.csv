@@ -1,0 +1,171 @@
+ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area Path,Assigned To,State,Tags,Description
+,Test Case,Token request for partner [partner],1,"Send a POST request to ""/v1/auth/token"" with form data:
+client_id = @clientId
+client_secret = @clientSecret
+grant_type = client_credentials",Response status code is @status,StockBroker\Regression\api\auth_token,qa.lead@broker.example,Design,api; auth_token,"Source: samples/stock-broker/features/api/auth_token.feature:3
+Feature: Partner authentication API
+Scenario: Token request for partner <partner> (Scenario Outline - parameterized)
+Test type: API (folder rule api/**)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test.
+Parameters: @clientId, @clientSecret, @status
+Iterations: 2 | values file: api/auth_token.parameters/01-token-request-for-partner-partner.csv
+Examples blocks: rows 1-2 (unnamed)
+Not parameters (title-only/unused columns): partner=Acme, Unknown
+Values:
+clientId | clientSecret | status
+acme-partner | ***MASKED*** | 200
+nobody | ***MASKED*** | 401"
+,Test Case,Legacy trade confirmation in XML,1,"Set the request header ""x-api-key"" to ""***MASKED***""",,StockBroker\Regression\api\auth_token,qa.lead@broker.example,Design,api; auth_token,"Source: samples/stock-broker/features/api/auth_token.feature:15
+Feature: Partner authentication API
+Scenario: Legacy trade confirmation in XML (Scenario)
+Test type: API (folder rule api/**)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Legacy trade confirmation in XML,2,"Send a POST request to ""/v1/legacy/confirmations"" with this XML body:
+<confirmation><orderId>ORD-5001</orderId><status>FILLED</status></confirmation>",Response status code is 202,StockBroker\Regression\api\auth_token,qa.lead@broker.example,Design,api; auth_token,"Source: samples/stock-broker/features/api/auth_token.feature:15
+Feature: Partner authentication API
+Scenario: Legacy trade confirmation in XML (Scenario)
+Test type: API (folder rule api/**)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Create a market order,1,"Set the API base URL to ""https://api.stockbroker.test""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:11
+Feature: Orders REST API
+Scenario: Create a market order (Scenario)
+Gherkin tags: @api @orders @smoke
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Create a market order,2,"Set the request header ""Authorization"" to ""Bearer ***MASKED***""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:11
+Feature: Orders REST API
+Scenario: Create a market order (Scenario)
+Gherkin tags: @api @orders @smoke
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Create a market order,3,"Set the request header ""Content-Type"" to ""application/json""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:11
+Feature: Orders REST API
+Scenario: Create a market order (Scenario)
+Gherkin tags: @api @orders @smoke
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Create a market order,4,"Send a POST request to ""/v1/orders"" with this body:
+{
+  ""clientId"": ""TRD1001"",
+  ""symbol"": ""AAPL"",
+  ""side"": ""BUY"",
+  ""type"": ""MARKET"",
+  ""quantity"": 10
+}","Response status code is 201
+Response body field ""status"" is ""FILLED""
+Response matches the schema ""schemas/order-response.json""",StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:11
+Feature: Orders REST API
+Scenario: Create a market order (Scenario)
+Gherkin tags: @api @orders @smoke
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Order validation returns [statusCode] for [case],1,"Set the API base URL to ""https://api.stockbroker.test""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:26
+Feature: Orders REST API
+Scenario: Order validation returns <statusCode> for <case> (Scenario Outline - parameterized)
+Gherkin tags: @api @orders
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test.
+Parameters: @symbol, @qty, @statusCode, @errorCode
+Iterations: 3 | values file: api/orders_api.parameters/01-order-validation-returns-statuscode-for-case.csv
+Examples blocks: rows 1-3 (unnamed)
+Not parameters (title-only/unused columns): case=unknown symbol, zero quantity, market closed
+Values:
+symbol | qty | statusCode | errorCode
+ZZZZ | 10 | 400 | UNKNOWN_SYMBOL
+AAPL | 0 | 400 | INVALID_QUANTITY
+AAPL | 10 | 409 | MARKET_CLOSED"
+,Test Case,Order validation returns [statusCode] for [case],2,"Set the request header ""Authorization"" to ""Bearer ***MASKED***""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:26
+Feature: Orders REST API
+Scenario: Order validation returns <statusCode> for <case> (Scenario Outline - parameterized)
+Gherkin tags: @api @orders
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test.
+Parameters: @symbol, @qty, @statusCode, @errorCode
+Iterations: 3 | values file: api/orders_api.parameters/01-order-validation-returns-statuscode-for-case.csv
+Examples blocks: rows 1-3 (unnamed)
+Not parameters (title-only/unused columns): case=unknown symbol, zero quantity, market closed
+Values:
+symbol | qty | statusCode | errorCode
+ZZZZ | 10 | 400 | UNKNOWN_SYMBOL
+AAPL | 0 | 400 | INVALID_QUANTITY
+AAPL | 10 | 409 | MARKET_CLOSED"
+,Test Case,Order validation returns [statusCode] for [case],3,"Set the request header ""Content-Type"" to ""application/json""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:26
+Feature: Orders REST API
+Scenario: Order validation returns <statusCode> for <case> (Scenario Outline - parameterized)
+Gherkin tags: @api @orders
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test.
+Parameters: @symbol, @qty, @statusCode, @errorCode
+Iterations: 3 | values file: api/orders_api.parameters/01-order-validation-returns-statuscode-for-case.csv
+Examples blocks: rows 1-3 (unnamed)
+Not parameters (title-only/unused columns): case=unknown symbol, zero quantity, market closed
+Values:
+symbol | qty | statusCode | errorCode
+ZZZZ | 10 | 400 | UNKNOWN_SYMBOL
+AAPL | 0 | 400 | INVALID_QUANTITY
+AAPL | 10 | 409 | MARKET_CLOSED"
+,Test Case,Order validation returns [statusCode] for [case],4,"Send a POST request to ""/v1/orders"" with this body:
+{ ""clientId"": ""TRD1001"", ""symbol"": ""@symbol"", ""side"": ""BUY"", ""type"": ""MARKET"", ""quantity"": @qty }","Response status code is @statusCode
+Response body field ""error.code"" is ""@errorCode""",StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:26
+Feature: Orders REST API
+Scenario: Order validation returns <statusCode> for <case> (Scenario Outline - parameterized)
+Gherkin tags: @api @orders
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test.
+Parameters: @symbol, @qty, @statusCode, @errorCode
+Iterations: 3 | values file: api/orders_api.parameters/01-order-validation-returns-statuscode-for-case.csv
+Examples blocks: rows 1-3 (unnamed)
+Not parameters (title-only/unused columns): case=unknown symbol, zero quantity, market closed
+Values:
+symbol | qty | statusCode | errorCode
+ZZZZ | 10 | 400 | UNKNOWN_SYMBOL
+AAPL | 0 | 400 | INVALID_QUANTITY
+AAPL | 10 | 409 | MARKET_CLOSED"
+,Test Case,Get order by ID,1,"Set the API base URL to ""https://api.stockbroker.test""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:40
+Feature: Orders REST API
+Scenario: Get order by ID (Scenario)
+Gherkin tags: @api @orders
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Get order by ID,2,"Set the request header ""Authorization"" to ""Bearer ***MASKED***""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:40
+Feature: Orders REST API
+Scenario: Get order by ID (Scenario)
+Gherkin tags: @api @orders
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Get order by ID,3,"Set the request header ""Content-Type"" to ""application/json""",,StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:40
+Feature: Orders REST API
+Scenario: Get order by ID (Scenario)
+Gherkin tags: @api @orders
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Get order by ID,4,"Send a GET request to ""/v1/orders/ORD-5001"" with query parameters:
+include = fills","Response status code is 200
+Response body contains:
+field = value
+orderId = ORD-5001
+status = OPEN
+Response time is below 500 ms",StockBroker\Regression\api\orders_api,qa.lead@broker.example,Design,api; orders_api,"Source: samples/stock-broker/features/api/orders_api.feature:40
+Feature: Orders REST API
+Scenario: Get order by ID (Scenario)
+Gherkin tags: @api @orders
+Context: The Orders API (v1) lets partner systems place and query equity orders.
+Test type: API (tag @api)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."
+,Test Case,Quote endpoint returns the last traded price,1,"Send a GET request to ""/v1/quotes/AAPL""","Response status code is 200
+Response body field ""lastPrice"" is a positive number",StockBroker\Regression\market-data\quotes,qa.lead@broker.example,Design,market-data; quotes,"Source: samples/stock-broker/features/market-data/quotes.feature:3
+Feature: Market quotes
+Scenario: Quote endpoint returns the last traded price (Scenario)
+Test type: API (detected from steps: 3 API)
+Manual execution: API steps are sent with an API client (e.g. Postman) against the environment under test."

@@ -1,0 +1,324 @@
+{
+  "rel": "market-data/watch#list.feature",
+  "relNoExt": "market-data/watch#list",
+  "source": "samples/stock-broker/features/market-data/watch#list.feature",
+  "areaPath": "StockBroker\\Regression\\market-data\\watch-list",
+  "flags": [
+    "Area Path node renamed: 'watch#list' -> 'watch-list'"
+  ],
+  "testCases": [
+    {
+      "key": "market-data/watch#list.feature::Add a symbol to the watchlist",
+      "title": "Add a symbol to the watchlist",
+      "originalName": "Add a symbol to the watchlist",
+      "line": 7,
+      "where": "samples/stock-broker/features/market-data/watch#list.feature:7",
+      "isOutline": false,
+      "areaPath": "StockBroker\\Regression\\market-data\\watch-list",
+      "tags": [
+        "market-data",
+        "watch-list"
+      ],
+      "gherkinTags": [
+        "@market-data"
+      ],
+      "rule": "",
+      "existingTagId": null,
+      "flags": [],
+      "testType": "ui",
+      "testTypeReason": "default (no API evidence)",
+      "scenarioTitle": "Add a symbol to the watchlist",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            5
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When the trader adds \"AAPL\" to the watchlist",
+          "sourceExpected": "Then \"AAPL\" is shown in the watchlist with its last traded price",
+          "verify": false,
+          "lines": [
+            8,
+            9
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        }
+      ],
+      "description": "Source: samples/stock-broker/features/market-data/watch#list.feature:7\nFeature: Watchlist\nScenario: Add a symbol to the watchlist (Scenario)\nGherkin tags: @market-data\nTest type: UI (default (no API evidence))",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    },
+    {
+      "key": "market-data/watch#list.feature::Add a symbol to the watchlist #2",
+      "title": "Add a symbol to the watchlist (2)",
+      "originalName": "Add a symbol to the watchlist",
+      "line": 11,
+      "where": "samples/stock-broker/features/market-data/watch#list.feature:11",
+      "isOutline": false,
+      "areaPath": "StockBroker\\Regression\\market-data\\watch-list",
+      "tags": [
+        "market-data",
+        "watch-list"
+      ],
+      "gherkinTags": [
+        "@market-data"
+      ],
+      "rule": "",
+      "existingTagId": null,
+      "flags": [
+        "Duplicate title in Area Path, renamed to 'Add a symbol to the watchlist (2)'"
+      ],
+      "testType": "ui",
+      "testTypeReason": "default (no API evidence)",
+      "scenarioTitle": "Add a symbol to the watchlist",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            5
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When the trader adds \"aapl\" in lower case to the watchlist",
+          "sourceExpected": "Then \"AAPL\" is shown in the watchlist with its last traded price",
+          "verify": false,
+          "lines": [
+            12,
+            13
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        }
+      ],
+      "description": "Source: samples/stock-broker/features/market-data/watch#list.feature:11\nFeature: Watchlist\nScenario: Add a symbol to the watchlist (Scenario)\nGherkin tags: @market-data\nTest type: UI (default (no API evidence))",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    },
+    {
+      "key": "market-data/watch#list.feature::Price alert for <symbol>",
+      "title": "Price alert for [symbol]",
+      "originalName": "Price alert for <symbol>",
+      "line": 15,
+      "where": "samples/stock-broker/features/market-data/watch#list.feature:15",
+      "isOutline": true,
+      "areaPath": "StockBroker\\Regression\\market-data\\watch-list",
+      "tags": [
+        "market-data",
+        "watch-list"
+      ],
+      "gherkinTags": [
+        "@market-data"
+      ],
+      "rule": "",
+      "existingTagId": null,
+      "flags": [],
+      "testType": "ui",
+      "testTypeReason": "default (no API evidence)",
+      "scenarioTitle": "Price alert for [symbol]",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            5
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When the trader sets a price alert for \"@symbol\" at @target",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            16
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "And the price of \"@symbol\" reaches @target",
+          "sourceExpected": "Then a notification \"@symbol reached @target\" is shown",
+          "verify": false,
+          "lines": [
+            17,
+            18
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        }
+      ],
+      "parameters": [
+        "symbol",
+        "target"
+      ],
+      "placeholderToParam": {
+        "symbol": "symbol",
+        "target": "target"
+      },
+      "placeholderUse": {
+        "symbol": [
+          "And:text:action",
+          "Then:text:expected",
+          "When:text:action"
+        ],
+        "target": [
+          "And:text:action",
+          "Then:text:expected",
+          "When:text:action"
+        ]
+      },
+      "placeholdersInTitle": [
+        "symbol"
+      ],
+      "notParameters": {},
+      "values": [
+        [
+          "AAPL",
+          "155.00"
+        ]
+      ],
+      "examplesBlocks": [
+        "row 1 (unnamed)"
+      ],
+      "examplesDetail": [
+        {
+          "name": "",
+          "tags": [],
+          "columns": [
+            "symbol",
+            "target"
+          ],
+          "rows": 1
+        }
+      ],
+      "valuesFile": "market-data/watch#list.parameters/01-price-alert-for-symbol.csv",
+      "description": "Source: samples/stock-broker/features/market-data/watch#list.feature:15\nFeature: Watchlist\nScenario: Price alert for <symbol> (Scenario Outline - parameterized)\nGherkin tags: @market-data\nTest type: UI (default (no API evidence))\nParameters: @symbol, @target\nIterations: 1 | values file: market-data/watch#list.parameters/01-price-alert-for-symbol.csv\nExamples blocks: row 1 (unnamed)\nValues:\nsymbol | target\nAAPL | 155.00",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    },
+    {
+      "key": "market-data/watch#list.feature::Watchlist sorting by <column>",
+      "title": "Watchlist sorting by [column]",
+      "originalName": "Watchlist sorting by <column>",
+      "line": 24,
+      "where": "samples/stock-broker/features/market-data/watch#list.feature:24",
+      "isOutline": true,
+      "areaPath": "StockBroker\\Regression\\market-data\\watch-list",
+      "tags": [
+        "market-data",
+        "watch-list"
+      ],
+      "gherkinTags": [
+        "@market-data"
+      ],
+      "rule": "",
+      "existingTagId": null,
+      "flags": [
+        "<direction> was directly followed by text - a space was inserted after @direction"
+      ],
+      "testType": "ui",
+      "testTypeReason": "default (no API evidence)",
+      "scenarioTitle": "Watchlist sorting by [column]",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            5
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When the trader sorts the watchlist by \"@column\" in @direction order",
+          "sourceExpected": "Then the watchlist is sorted by \"@column\" @direction",
+          "verify": false,
+          "lines": [
+            25,
+            26
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        }
+      ],
+      "parameters": [
+        "column",
+        "direction"
+      ],
+      "placeholderToParam": {
+        "column": "column",
+        "direction": "direction"
+      },
+      "placeholderUse": {
+        "column": [
+          "Then:text:expected",
+          "When:text:action"
+        ],
+        "direction": [
+          "Then:text:expected",
+          "When:text:action"
+        ]
+      },
+      "placeholdersInTitle": [
+        "column"
+      ],
+      "notParameters": {},
+      "values": [
+        [
+          "Change",
+          "desc"
+        ]
+      ],
+      "examplesBlocks": [
+        "row 1 (unnamed)"
+      ],
+      "examplesDetail": [
+        {
+          "name": "",
+          "tags": [],
+          "columns": [
+            "column",
+            "direction"
+          ],
+          "rows": 1
+        }
+      ],
+      "valuesFile": "market-data/watch#list.parameters/02-watchlist-sorting-by-column.csv",
+      "description": "Source: samples/stock-broker/features/market-data/watch#list.feature:24\nFeature: Watchlist\nScenario: Watchlist sorting by <column> (Scenario Outline - parameterized)\nGherkin tags: @market-data\nTest type: UI (default (no API evidence))\nParameters: @column, @direction\nIterations: 1 | values file: market-data/watch#list.parameters/02-watchlist-sorting-by-column.csv\nExamples blocks: row 1 (unnamed)\nValues:\ncolumn | direction\nChange | desc",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    }
+  ],
+  "commentedOut": [],
+  "name": "Watchlist"
+}

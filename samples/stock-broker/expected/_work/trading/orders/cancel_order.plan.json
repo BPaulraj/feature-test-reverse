@@ -1,0 +1,231 @@
+{
+  "rel": "trading/orders/cancel_order.feature",
+  "relNoExt": "trading/orders/cancel_order",
+  "source": "samples/stock-broker/features/trading/orders/cancel_order.feature",
+  "areaPath": "StockBroker\\Regression\\trading\\orders\\cancel_order",
+  "flags": [],
+  "testCases": [
+    {
+      "key": "trading/orders/cancel_order.feature::Cancel an open order",
+      "title": "Cancel an open order",
+      "originalName": "Cancel an open order",
+      "line": 9,
+      "where": "samples/stock-broker/features/trading/orders/cancel_order.feature:9",
+      "isOutline": false,
+      "areaPath": "StockBroker\\Regression\\trading\\orders\\cancel_order",
+      "tags": [
+        "trading",
+        "orders",
+        "cancel_order"
+      ],
+      "gherkinTags": [
+        "@trading",
+        "@orders",
+        "@smoke"
+      ],
+      "rule": "",
+      "existingTagId": "48213",
+      "flags": [],
+      "testType": "ui",
+      "testTypeReason": "default (no API evidence)",
+      "scenarioTitle": "Cancel an open order",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            5
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "Given",
+          "source": "And the trader has an open limit order \"ORD-5001\" to BUY 20 \"INFY\" at 18.50",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            6
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When the trader cancels order \"ORD-5001\"",
+          "sourceExpected": "Then the order status is \"CANCELLED\"\nAnd the reserved funds are released",
+          "verify": false,
+          "lines": [
+            10,
+            11,
+            12
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        }
+      ],
+      "description": "Source: samples/stock-broker/features/trading/orders/cancel_order.feature:9\nFeature: Cancel open orders\nScenario: Cancel an open order (Scenario)\nGherkin tags: @trading @orders @smoke\nTest type: UI (default (no API evidence))",
+      "adoId": "48213",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    },
+    {
+      "key": "trading/orders/cancel_order.feature::Cancel confirmation dialog can be dismissed",
+      "title": "Cancel confirmation dialog can be dismissed",
+      "originalName": "Cancel confirmation dialog can be dismissed",
+      "line": 14,
+      "where": "samples/stock-broker/features/trading/orders/cancel_order.feature:14",
+      "isOutline": false,
+      "areaPath": "StockBroker\\Regression\\trading\\orders\\cancel_order",
+      "tags": [
+        "trading",
+        "orders",
+        "cancel_order"
+      ],
+      "gherkinTags": [
+        "@trading",
+        "@orders"
+      ],
+      "rule": "",
+      "existingTagId": null,
+      "flags": [
+        "No expected result (no Then step)"
+      ],
+      "testType": "ui",
+      "testTypeReason": "default (no API evidence)",
+      "scenarioTitle": "Cancel confirmation dialog can be dismissed",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            5
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "Given",
+          "source": "And the trader has an open limit order \"ORD-5001\" to BUY 20 \"INFY\" at 18.50",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            6
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When the trader clicks cancel on order \"ORD-5001\"",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            15
+          ],
+          "stepType": "ui",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "And the trader dismisses the confirmation dialog",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            16
+          ],
+          "stepType": "ui",
+          "payload": ""
+        }
+      ],
+      "description": "Source: samples/stock-broker/features/trading/orders/cancel_order.feature:14\nFeature: Cancel open orders\nScenario: Cancel confirmation dialog can be dismissed (Scenario)\nGherkin tags: @trading @orders\nTest type: UI (default (no API evidence))",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    },
+    {
+      "key": "trading/orders/cancel_order.feature::A filled order cannot be cancelled",
+      "title": "A filled order cannot be cancelled",
+      "originalName": "A filled order cannot be cancelled",
+      "line": 18,
+      "where": "samples/stock-broker/features/trading/orders/cancel_order.feature:18",
+      "isOutline": false,
+      "areaPath": "StockBroker\\Regression\\trading\\orders\\cancel_order",
+      "tags": [
+        "trading",
+        "orders",
+        "cancel_order"
+      ],
+      "gherkinTags": [
+        "@trading",
+        "@orders"
+      ],
+      "rule": "",
+      "existingTagId": null,
+      "flags": [],
+      "testType": "ui",
+      "testTypeReason": "default (no API evidence)",
+      "scenarioTitle": "A filled order cannot be cancelled",
+      "titleProblems": [],
+      "rows": [
+        {
+          "kind": "Given",
+          "source": "Given the trader is logged in as \"TRD1001\"",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            5
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "Given",
+          "source": "And the trader has an open limit order \"ORD-5001\" to BUY 20 \"INFY\" at 18.50",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            6
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "Given",
+          "source": "Given order \"ORD-5001\" has been filled",
+          "sourceExpected": "",
+          "verify": false,
+          "lines": [
+            19
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        },
+        {
+          "kind": "When",
+          "source": "When the trader tries to cancel order \"ORD-5001\"",
+          "sourceExpected": "Then the error message \"Order already filled\" is displayed",
+          "verify": false,
+          "lines": [
+            20,
+            21
+          ],
+          "stepType": "neutral",
+          "payload": ""
+        }
+      ],
+      "description": "Source: samples/stock-broker/features/trading/orders/cancel_order.feature:18\nFeature: Cancel open orders\nScenario: A filled order cannot be cancelled (Scenario)\nGherkin tags: @trading @orders\nTest type: UI (default (no API evidence))",
+      "adoId": "",
+      "state": "Design",
+      "assignedTo": "qa.lead@broker.example"
+    }
+  ],
+  "commentedOut": [],
+  "name": "Cancel open orders"
+}

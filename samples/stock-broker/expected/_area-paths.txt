@@ -1,0 +1,8 @@
+StockBroker\Regression\api\auth_token
+StockBroker\Regression\api\orders_api
+StockBroker\Regression\auth\login
+StockBroker\Regression\market-data\quotes
+StockBroker\Regression\market-data\watch-list
+StockBroker\Regression\portfolio\holdings
+StockBroker\Regression\trading\orders\cancel_order
+StockBroker\Regression\trading\orders\place_order

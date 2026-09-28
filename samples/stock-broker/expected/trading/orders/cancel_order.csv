@@ -1,0 +1,57 @@
+ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area Path,Assigned To,State,Tags,Description
+48213,Test Case,Cancel an open order,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:9
+Feature: Cancel open orders
+Scenario: Cancel an open order (Scenario)
+Gherkin tags: @trading @orders @smoke
+Test type: UI (default (no API evidence))"
+48213,Test Case,Cancel an open order,2,"Ensure the trader has an open limit order ""ORD-5001"" to BUY 20 ""INFY"" at 18.50",,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:9
+Feature: Cancel open orders
+Scenario: Cancel an open order (Scenario)
+Gherkin tags: @trading @orders @smoke
+Test type: UI (default (no API evidence))"
+48213,Test Case,Cancel an open order,3,"Cancel order ""ORD-5001""","The order status is ""CANCELLED""
+The reserved funds are released",StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:9
+Feature: Cancel open orders
+Scenario: Cancel an open order (Scenario)
+Gherkin tags: @trading @orders @smoke
+Test type: UI (default (no API evidence))"
+,Test Case,Cancel confirmation dialog can be dismissed,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:14
+Feature: Cancel open orders
+Scenario: Cancel confirmation dialog can be dismissed (Scenario)
+Gherkin tags: @trading @orders
+Test type: UI (default (no API evidence))"
+,Test Case,Cancel confirmation dialog can be dismissed,2,"Ensure the trader has an open limit order ""ORD-5001"" to BUY 20 ""INFY"" at 18.50",,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:14
+Feature: Cancel open orders
+Scenario: Cancel confirmation dialog can be dismissed (Scenario)
+Gherkin tags: @trading @orders
+Test type: UI (default (no API evidence))"
+,Test Case,Cancel confirmation dialog can be dismissed,3,"Click cancel on order ""ORD-5001""",,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:14
+Feature: Cancel open orders
+Scenario: Cancel confirmation dialog can be dismissed (Scenario)
+Gherkin tags: @trading @orders
+Test type: UI (default (no API evidence))"
+,Test Case,Cancel confirmation dialog can be dismissed,4,Dismiss the confirmation dialog,,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:14
+Feature: Cancel open orders
+Scenario: Cancel confirmation dialog can be dismissed (Scenario)
+Gherkin tags: @trading @orders
+Test type: UI (default (no API evidence))"
+,Test Case,A filled order cannot be cancelled,1,"Log in as trader ""TRD1001""",,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:18
+Feature: Cancel open orders
+Scenario: A filled order cannot be cancelled (Scenario)
+Gherkin tags: @trading @orders
+Test type: UI (default (no API evidence))"
+,Test Case,A filled order cannot be cancelled,2,"Ensure the trader has an open limit order ""ORD-5001"" to BUY 20 ""INFY"" at 18.50",,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:18
+Feature: Cancel open orders
+Scenario: A filled order cannot be cancelled (Scenario)
+Gherkin tags: @trading @orders
+Test type: UI (default (no API evidence))"
+,Test Case,A filled order cannot be cancelled,3,"Ensure order ""ORD-5001"" has been filled",,StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:18
+Feature: Cancel open orders
+Scenario: A filled order cannot be cancelled (Scenario)
+Gherkin tags: @trading @orders
+Test type: UI (default (no API evidence))"
+,Test Case,A filled order cannot be cancelled,4,"Try to cancel order ""ORD-5001""","The error message ""Order already filled"" is displayed",StockBroker\Regression\trading\orders\cancel_order,qa.lead@broker.example,Design,trading; orders; cancel_order,"Source: samples/stock-broker/features/trading/orders/cancel_order.feature:18
+Feature: Cancel open orders
+Scenario: A filled order cannot be cancelled (Scenario)
+Gherkin tags: @trading @orders
+Test type: UI (default (no API evidence))"

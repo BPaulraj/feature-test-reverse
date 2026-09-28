@@ -1,0 +1,53 @@
+{
+  "feature": "samples/stock-broker/features/api/auth_token.feature",
+  "howTo": "Fill 'action' and 'expected' for every row (rules: instructions §4). Keep every @parameter, quoted value, table and doc-string text from 'source'/'sourceExpected'. Leave 'expected' empty when 'sourceExpected' is empty. Don't add, remove or reorder rows.",
+  "testCases": [
+    {
+      "key": "api/auth_token.feature::Token request for partner <partner>",
+      "scenarioTitle": "Token request for partner [partner]",
+      "title": "Token request for partner [partner]",
+      "testType": "api",
+      "parameters": [
+        "clientId",
+        "clientSecret",
+        "status"
+      ],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "api",
+          "source": "When a POST request is sent to \"/v1/auth/token\" with form data:\nclient_id = @clientId\nclient_secret = @clientSecret\ngrant_type = client_credentials",
+          "sourceExpected": "Then the response status code is @status",
+          "action": "Send a POST request to \"/v1/auth/token\" with form data:\nclient_id = @clientId\nclient_secret = @clientSecret\ngrant_type = client_credentials",
+          "expected": "Response status code is @status"
+        }
+      ]
+    },
+    {
+      "key": "api/auth_token.feature::Legacy trade confirmation in XML",
+      "scenarioTitle": "Legacy trade confirmation in XML",
+      "title": "Legacy trade confirmation in XML",
+      "testType": "api",
+      "parameters": [],
+      "rows": [
+        {
+          "step": 1,
+          "stepType": "api",
+          "source": "Given the request header \"x-api-key\" is \"***MASKED***\"",
+          "sourceExpected": "",
+          "action": "Set the request header \"x-api-key\" to \"***MASKED***\"",
+          "expected": ""
+        },
+        {
+          "step": 2,
+          "stepType": "api",
+          "payload": "xml",
+          "source": "When a POST request is sent to \"/v1/legacy/confirmations\" with body:\n<confirmation><orderId>ORD-5001</orderId><status>FILLED</status></confirmation>",
+          "sourceExpected": "Then the response status code is 202",
+          "action": "Send a POST request to \"/v1/legacy/confirmations\" with this XML body:\n<confirmation><orderId>ORD-5001</orderId><status>FILLED</status></confirmation>",
+          "expected": "Response status code is 202"
+        }
+      ]
+    }
+  ]
+}
